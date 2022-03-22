@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Elements\CuteTextBox.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Elements\SearchBox.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\AddToGuests.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\GuestPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\AuthWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\MainWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\HomePage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Assets\Icons\Icons.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Elements\CuteTextBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Elements\SearchBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\AddToGuests.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\GuestPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\AuthWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\HomePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\MainStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Themes\LightTheme.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>
