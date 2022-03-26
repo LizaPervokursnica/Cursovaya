@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HotelAccounting.Classes;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -21,12 +22,15 @@ namespace HotelAccounting.Pages
         {
             using (ApplicationContext appContext = new ApplicationContext())
             {
-                var guests = appContext.Guests;
-
-                guests.Add(new Guest
+             
+                appContext.Guests.Add(new Guest
                 {
-
+                    Name = NameTextBox.TxtBox.Text,
+                    Phone = PhoneTextBox.TxtBox.Text,
+                    Sex = "Мужской"
                 });
+
+                appContext.SaveChanges();
             }
         }
     }

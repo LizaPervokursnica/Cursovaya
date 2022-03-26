@@ -17,5 +17,15 @@ namespace HotelAccounting.Pages
             try { ListV.ItemsSource = context.Rooms.ToArray();}
             catch { MessageBox.Show("Ошибка подключеия к базе данных"); }
         }
+
+        private void ChooseRoom(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            var room = button.DataContext as Room;
+
+            //var room = ListV.SelectedItem as Room;
+            if (room != null) MessageBox.Show(room.NameOfRoom);
+
+        }
     }
 }

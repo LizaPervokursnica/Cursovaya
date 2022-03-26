@@ -38,7 +38,7 @@
                                         <Label FontSize="13" FontFamily="{StaticResource LableMontserratFont}" Content="{Binding NameOfRoom}"/>
                                         <TextBlock FontFamily="{StaticResource CustomTextFont}" Text="{Binding Equipment}" TextWrapping="Wrap" Height="100" Margin="10 0 0 0"/>
                                     </StackPanel>
-                                    <Button Content="Выбрать" Style="{StaticResource AuthButton}" FontSize="10" FontFamily="{StaticResource LableMontserratFont}" Grid.Column="1" Height="35" Width="60"/>
+                                    <Button Content="Выбрать" Style="{StaticResource AuthButton}" FontSize="10" FontFamily="{StaticResource LableMontserratFont}" Grid.Column="1" Height="35" Width="60" Click="ChooseRoom"  />
                                 </Grid>
                             </Grid>
                         </Border>

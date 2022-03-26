@@ -7,16 +7,7 @@
     <FontFamily x:Key="BoldTitleMontserratFont" >/Fonts/#Montserrat Alternates Bold</FontFamily> 
     <FontFamily x:Key="LableMontserratFont" >/Fonts/#Montserrat Alternates ExtraLight</FontFamily>
     <FontFamily x:Key="CustomTextFont" >/Fonts/#Exo 2 Medium</FontFamily>
-
-    <!-- CustomElements Colors -->
-    <SolidColorBrush x:Key="TBoxCaretBrush" Color="#505559"/>
-    <SolidColorBrush x:Key="TBoxSelectionBrush" Color="#979997"/>
-    <SolidColorBrush x:Key="TBoxForeground" Color="#212121"/>
-    <SolidColorBrush x:Key="LabelForeground" Color="#979997"/>
-    <SolidColorBrush x:Key="SeconBtnColor" Color="#6666ff"/>
-    <SolidColorBrush x:Key="AltFirstBtnColor" Color="#a8beff"/>
-    <SolidColorBrush x:Key="AltSecondBtnColor" Color="#9db9ff"/>
-
+    
     <!-- Background Colors -->
     <SolidColorBrush x:Key="PrimaryBackgroundColor" Color="#f3f3f3"/>
     <SolidColorBrush x:Key="SecundaryBackgroundColor" Color="#f9f9f9"/>
@@ -35,4 +26,24 @@
 
     <!-- Icons Colors -->
     <SolidColorBrush x:Key="ActionIconColor" Color="#434344"/>
+
+    <!-- Start: CustomElements Colors -->
+
+    <!--CuteTextBox Colors -->
+    <SolidColorBrush x:Key="TBoxCaretBrush" Color="#505559"/>
+    <SolidColorBrush x:Key="TBoxSelectionBrush" Color="#979997"/>
+    <SolidColorBrush x:Key="TBoxForeground" Color="#212121"/>
+    <SolidColorBrush x:Key="LabelForeground" Color="#979997"/>
+
+    <!--Main Authorization Button Colors -->
+    <SolidColorBrush x:Key="SeconBtnColor" Color="#6666ff"/>
+
+    <!--Alt Authorization Button Colors -->
+    <SolidColorBrush x:Key="AltFirstBtnColor" Color="#a8beff"/>
+    <SolidColorBrush x:Key="AltSecondBtnColor" Color="#9db9ff"/>
+
+ 
+    
+    <!-- End: CustomElements Colors -->
+
 </ResourceDictionary>

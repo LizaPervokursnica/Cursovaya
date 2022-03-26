@@ -10,6 +10,12 @@
     <Compile Update="Elements\CuteTextBox.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Elements\IconButtonBig.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Elements\IconButtonSmall.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Elements\SearchBox.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -34,6 +40,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Elements\CuteTextBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Elements\IconButtonBig.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Elements\IconButtonSmall.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Elements\SearchBox.xaml">

@@ -4,12 +4,25 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:HotelAccounting.Pages"
+      xmlns:elements="clr-namespace:HotelAccounting.Elements"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="GuestPage">
 
     <Border CornerRadius="5" Background="{DynamicResource SecundaryBackgroundColor}">
         <Grid HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Start: Add Button & SearchBox -->
+            <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Left" Margin="10 0 10 0">
+                <elements:IconButtonBig BtnIcon="{StaticResource add}" ToolTip="Добавить гостя" Width="60" MouseDown="AddToDb_Click" />
+                
+            </StackPanel>
+            <!-- End: Add Button & SearchBox -->
+            
             <ListView Margin="5" BorderThickness="0" Background="Transparent" x:Name="ListV" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -21,6 +34,7 @@
                         <Border Width="240" Height="230" Background="Pink" CornerRadius="15">
                             <Grid>
                                 <Grid.RowDefinitions>
+                                    <RowDefinition Height="25"/>
                                     <RowDefinition Height="2*"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
@@ -29,11 +43,16 @@
                                         <ImageBrush Stretch="UniformToFill" ImageSource="{Binding Photo}"/>
                                     </Rectangle.Fill>
                                 </Rectangle>-->
-                                <Grid Grid.Row="1">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 5 5 0">
+                                 <elements:IconButtonSmall BtnIcon="{StaticResource edit}" ToolTip="Радактировать" Width="25" MouseDown="EditLogicBtn_Click" />
+                                    <elements:IconButtonSmall BtnIcon="{StaticResource delete}" ToolTip="Удалить" Width="25" MouseDown="DeleteLogicBtn_Click" />
+                                </StackPanel>
+                                <Grid Grid.Row="2">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="2*"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
+                                   
                                     <StackPanel>
                                         <TextBlock>
                                             <Run Text="Имя: "/>

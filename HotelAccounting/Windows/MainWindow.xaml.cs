@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HotelAccounting.Pages;
+using System;
 using System.Windows;
 using System.Windows.Input;
 
@@ -24,7 +25,6 @@ namespace HotelAccounting
             if (Mouse.LeftButton == MouseButtonState.Pressed) window.DragMove();
         }
 
-
         private void btnRestore_Click(object sender, RoutedEventArgs e) =>
             WindowState = WindowState == WindowState.Normal ? WindowState = WindowState.Maximized : WindowState = WindowState.Normal;
 
@@ -41,6 +41,8 @@ namespace HotelAccounting
             PagesNavigation.Navigate(new Uri("Pages/GuestPage.xaml", UriKind.RelativeOrAbsolute));
 
 
+        private void Border_MouseDown_1(object sender, MouseButtonEventArgs e) => Keyboard.ClearFocus();
+        
         //private void rdNotes_Click(object sender, RoutedEventArgs e) =>
         //    PagesNavigation.Navigate(new Uri("Pages/NotesPage.xaml", UriKind.RelativeOrAbsolute));
 
