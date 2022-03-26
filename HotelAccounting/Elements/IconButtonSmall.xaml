@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="HotelAccounting.Elements.IconButtonSmall"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HotelAccounting.Elements"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    
+    <Border  x:Name="AddUpBorder" Background="Transparent" VerticalAlignment="Stretch" 
+             HorizontalAlignment="Stretch" CornerRadius="10">
+        <Grid Background="Transparent" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave">
+            <Path Stretch="Uniform" Margin="4" Fill="Black" Data="{Binding BtnIcon}" 
+                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        </Grid>
+    </Border>
+    
+</UserControl>

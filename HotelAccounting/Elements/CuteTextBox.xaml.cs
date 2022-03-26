@@ -30,5 +30,13 @@ namespace HotelAccounting.Elements
             lbl.FontSize = 11;
         }
 
+        private void brdr_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (TxtBox.Text != "")
+            {
+                lbl.VerticalAlignment = VerticalAlignment.Top;
+                lbl.FontSize = 11;
+            }
+        }
     }
 }
