@@ -1,4 +1,5 @@
 ﻿using HotelAccounting.DataAccess;
+using HotelAccounting.Model;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -38,26 +39,24 @@ namespace HotelAccounting.Pages
 
         private void HouseCBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            ListV = new ListView();
+            var allRooms = context.Rooms.ToList();
 
-            var newSource = context.Rooms.ToList();
+            var selectedIndex = (RoomFilter)HouseCBox.SelectedIndex;
 
-            var selectedIndex = HouseCBox.SelectedIndex;
-
-            if (selectedIndex == 1)
+            if (selectedIndex == RoomFilter.Free)
             {
-                newSource = newSource.Where(x => x.GuestId == null).ToList();
-            }
-            else if (selectedIndex == 2)
-            {
-                newSource = newSource.Where(x => x.GuestId != null).ToList();
-            }
-            else
-            {
-                ListV.ItemsSource = context.Rooms.ToArray();
+                ListV.ItemsSource = allRooms.Where(x => !x.GuestId.HasValue).ToList();
+                return;
             }
 
-            ListV.ItemsSource = newSource;
+            if (selectedIndex == RoomFilter.Occupied)
+            {
+                ListV.ItemsSource = allRooms.Where(x => x.GuestId.HasValue).ToList();
+                return;
+            }
 
+            ListV.ItemsSource = allRooms;
         }
 
         private void SearchBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
