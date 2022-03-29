@@ -1,5 +1,7 @@
 ﻿using HotelAccounting.DataAccess;
 using HotelAccounting.Model;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -40,23 +42,38 @@ namespace HotelAccounting.Pages
         private void HouseCBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ListV = new ListView();
-            var allRooms = context.Rooms.ToList();
-
             var selectedIndex = (RoomFilter)HouseCBox.SelectedIndex;
 
             if (selectedIndex == RoomFilter.Free)
             {
-                ListV.ItemsSource = allRooms.Where(x => !x.GuestId.HasValue).ToList();
+                var freeList = context.Rooms.Where(x => !x.GuestId.HasValue).ToList();
+                var freeObservableCollection = new ObservableCollection<Room>();
+                ListV.ItemsSource = freeObservableCollection;
+
+                freeList.ForEach(x => freeObservableCollection.Add(x));
+                ListV.Items.Refresh();
+
                 return;
             }
 
             if (selectedIndex == RoomFilter.Occupied)
             {
-                ListV.ItemsSource = allRooms.Where(x => x.GuestId.HasValue).ToList();
+                var occupiedList = context.Rooms.Where(x => x.GuestId.HasValue).ToList();
+                var occupiedObservableCollection = new ObservableCollection<Room>();
+                ListV.ItemsSource = occupiedObservableCollection;
+
+                occupiedList.ForEach(x => occupiedObservableCollection.Add(x));
+                ListV.Items.Refresh();
+
                 return;
             }
 
-            ListV.ItemsSource = allRooms;
+            var list = context.Rooms.ToList();
+            var observableCollection = new ObservableCollection<Room>();
+            ListV.ItemsSource = observableCollection;
+
+            list.ForEach(x => observableCollection.Add(x));
+            ListV.Items.Refresh();
         }
 
         private void SearchBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
