@@ -9,7 +9,7 @@
     
     <Border  x:Name="AddUpBorder" Background="Transparent" VerticalAlignment="Stretch" 
              HorizontalAlignment="Stretch" CornerRadius="10">
-        <Grid Background="Transparent" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave">
+        <Grid Background="Transparent">
             <Path Stretch="Uniform" Margin="4" Fill="Black" Data="{Binding BtnIcon}" 
                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         </Grid>

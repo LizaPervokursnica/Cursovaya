@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace HotelAccounting.Elements
 {
@@ -13,20 +12,14 @@ namespace HotelAccounting.Elements
         {
             InitializeComponent();
         }
-        //Фокус на keyboard
-        private void Border_LostFocus(object sender, RoutedEventArgs e)
+
+        private void SearchBorder_LostKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
         {
-            if (SearchItemTxt.Text == "")
-            {
-                LblSearchTxt.Visibility = Visibility.Visible;
-                SearchItemTxt.Foreground = new SolidColorBrush(Color.FromRgb(157, 157, 157));
-            }
+            if (SearchItemTxt.Text == "") LblSearchTxt.Visibility = Visibility.Visible;
         }
-        //Фокус на keyboard
-        private void Border_GotFocus(object sender, RoutedEventArgs e)
-        {
+
+        private void SearchBorder_GotKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e) => 
             LblSearchTxt.Visibility = Visibility.Hidden;
-            SearchItemTxt.Foreground = new SolidColorBrush(Colors.White);
-        }
+        
     }
 }

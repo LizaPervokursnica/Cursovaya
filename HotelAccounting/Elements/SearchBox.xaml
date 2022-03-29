@@ -6,16 +6,19 @@
              xmlns:local="clr-namespace:HotelAccounting.Elements"
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="300">
-    <Border x:Name="SearchBorder" Background="#FF1F202A" LostFocus="Border_LostFocus" GotFocus="Border_GotFocus">
+    <Border x:Name="SearchBorder" CornerRadius="5" LostKeyboardFocus="SearchBorder_LostKeyboardFocus" GotKeyboardFocus="SearchBorder_GotKeyboardFocus">
+        <Border.Background>
+            <SolidColorBrush Color="LightGray" Opacity="0.5"/>
+        </Border.Background>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="30"/>
                 <ColumnDefinition Width="90*"/>
             </Grid.ColumnDefinitions>
-            <!--Сюда лупу svg-->
-            <Image x:Name="IconSearch" Opacity="0.5" Width="16" HorizontalAlignment="Right" VerticalAlignment="Stretch"/>
-            <Label x:Name="LblSearchTxt" Background="{x:Null}" Content="Поиск..." Grid.Column="1" Margin="10,0" VerticalContentAlignment="Center" VerticalAlignment="Stretch" FontSize="12" Foreground="#FF9D9D9D"/>
-            <TextBox x:Name="SearchItemTxt" Grid.Column="1" FontSize="12" BorderThickness="0" TextWrapping="NoWrap" Margin="10,0" VerticalContentAlignment="Center" VerticalAlignment="Stretch" Foreground="#FF9D9D9D" Background="Transparent"/>
+
+            <Path Data="{StaticResource loupe}" Fill="{StaticResource LabelForeground}" Stretch="Uniform" Width="16" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+            <Label x:Name="LblSearchTxt" FontFamily="{StaticResource CustomTextFont}" Background="{x:Null}" Content="Поиск..." Grid.Column="1" Margin="10,0" VerticalContentAlignment="Center" VerticalAlignment="Stretch" FontSize="13" Foreground="{StaticResource LabelForeground}"/>
+            <TextBox x:Name="SearchItemTxt" Style="{StaticResource MainTextBox}"  Grid.Column="1" Margin="10,0" VerticalContentAlignment="Center" VerticalAlignment="Stretch"/>
         </Grid>
     </Border>
 </UserControl>
