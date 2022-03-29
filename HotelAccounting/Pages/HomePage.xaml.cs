@@ -46,7 +46,6 @@ namespace HotelAccounting.Pages
             {
                 ListV = new ListView();
             }
-           
 
             var selectedIndex = (RoomFilter)HouseCBox.SelectedIndex;
 
