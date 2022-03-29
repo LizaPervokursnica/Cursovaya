@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using HotelAccounting.DataAccess;
+using System.Linq;
 
 namespace HotelAccounting.Classes
 {
@@ -9,7 +10,7 @@ namespace HotelAccounting.Classes
             User? authUser = null;
             try
             {
-                using (ApplicationContext context = new ApplicationContext())
+                using (HotelDbContext context = new HotelDbContext())
                     authUser = context.Users.FirstOrDefault(x => x.Login == log.Trim());
 
                 return authUser != null && BCrypt.Net.BCrypt.Verify(pass.Trim(), authUser.Password) ? "true" : "false";

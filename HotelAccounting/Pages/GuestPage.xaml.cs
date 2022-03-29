@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Controls;
+using HotelAccounting.DataAccess;
 
 namespace HotelAccounting.Pages
 {
@@ -16,7 +17,7 @@ namespace HotelAccounting.Pages
             InitializeComponent();
             try
             {
-                ApplicationContext context = new ApplicationContext();
+                HotelDbContext context = new HotelDbContext();
                 ListV.ItemsSource = context.Guests.ToArray();
             }
             catch { MessageBox.Show("Ошибка подключеия к базе данных", "Ошибка!", MessageBoxButton.OK); }

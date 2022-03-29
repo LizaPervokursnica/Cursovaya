@@ -1,4 +1,5 @@
 ﻿using HotelAccounting.Classes;
+using HotelAccounting.DataAccess;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,7 +21,7 @@ namespace HotelAccounting.Pages
 
         private void AddNewGuestToDb(object sender, RoutedEventArgs e)
         {
-            using (ApplicationContext appContext = new ApplicationContext())
+            using (HotelDbContext appContext = new HotelDbContext())
             {
              
                 appContext.Guests.Add(new Guest
