@@ -22,7 +22,6 @@ namespace HotelAccounting.DataAccess
                 throw new ArgumentNullException(nameof(connectionString));
             }
 
-
             optionsBuilder.UseNpgsql(connectionString);
         }
     }
