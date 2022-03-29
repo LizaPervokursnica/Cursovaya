@@ -19,6 +19,9 @@
     <Compile Update="Elements\SearchBox.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Elements\СutePasswordBox.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\AddToGuests.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -49,6 +52,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Elements\SearchBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Elements\СutePasswordBox.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\AddToGuests.xaml">

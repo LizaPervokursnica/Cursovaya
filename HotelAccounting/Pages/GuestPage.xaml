@@ -8,22 +8,23 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="GuestPage">
-
+    
     <Border CornerRadius="5" Background="{DynamicResource SecundaryBackgroundColor}">
-        <Grid HorizontalAlignment="Center">
+        <Grid HorizontalAlignment="Stretch">
             <Grid.RowDefinitions>
-                <RowDefinition Height="35"/>
+                <RowDefinition Height="40"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <!-- Start: Add Button & SearchBox -->
-            <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Left" Margin="10 0 10 0">
+            <StackPanel Orientation="Horizontal"  Grid.Row="0" HorizontalAlignment="Right" Margin="0 5 0 0">
+                <elements:SearchBox Width="300"/>
                 <elements:IconButtonBig BtnIcon="{StaticResource add}" ToolTip="Добавить гостя" Width="60" MouseDown="AddToDb_Click" />
                 
             </StackPanel>
             <!-- End: Add Button & SearchBox -->
             
-            <ListView Margin="5" BorderThickness="0" Background="Transparent" x:Name="ListV" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView Margin="5" BorderThickness="0" HorizontalAlignment="Center" Background="Transparent" x:Name="ListV" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel/>
@@ -31,44 +32,50 @@
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Border Width="240" Height="230" Background="Pink" CornerRadius="15">
+                        <Border Width="200" Height="110" Background="{StaticResource PrimaryBackgroundColor}" CornerRadius="15">
                             <Grid>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="25"/>
-                                    <RowDefinition Height="2*"/>
+                                    <RowDefinition Height="23"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
-                                <!--<Rectangle RadiusX="20" RadiusY="20" Margin="8">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <Rectangle Grid.Row="1" RadiusX="10" RadiusY="10" Margin="5 0 5 15" Width="60">
                                     <Rectangle.Fill>
                                         <ImageBrush Stretch="UniformToFill" ImageSource="{Binding Photo}"/>
                                     </Rectangle.Fill>
-                                </Rectangle>-->
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 5 5 0">
-                                 <elements:IconButtonSmall BtnIcon="{StaticResource edit}" ToolTip="Радактировать" Width="25" MouseDown="EditLogicBtn_Click" />
-                                    <elements:IconButtonSmall BtnIcon="{StaticResource delete}" ToolTip="Удалить" Width="25" MouseDown="DeleteLogicBtn_Click" />
+                                </Rectangle>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 5 5 0" Grid.Column="2">
+                                <!--<elements:IconButtonSmall BtnIcon="{StaticResource edit}" ToolTip="Радактировать" Width="25" MouseDown="EditLogicBtn_Click" />-->
+                                <elements:IconButtonSmall BtnIcon="{StaticResource delete}" ToolTip="Удалить" Width="25" MouseDown="DeleteLogicBtn_Click" />
                                 </StackPanel>
-                                <Grid Grid.Row="2">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="2*"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                   
-                                    <StackPanel>
-                                        <TextBlock>
-                                            <Run Text="Имя: "/>
-                                            <Run Text="{Binding Name}"/>
+                                
+                                <Button Content="Изменить" Style="{StaticResource AuthButton}" FontSize="10" Grid.Row="1" Margin="0 0 0 15" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="1" Height="25" Width="100"/>
+
+                                <!-- Info about guest -->
+                                <Grid Grid.Row="1" Grid.Column="1">
+                                    <StackPanel Margin="0 0 0 0">
+                                        <TextBlock FontFamily="{StaticResource CustomTextFont}">
+                                            <Run Text="{Binding Name}" FontWeight="DemiBold"/>
                                         </TextBlock>
-                                        <TextBlock>
-                                            <Run Text="Пол: "/>
-                                            <Run Text="{Binding Sex}"/>
+
+                                        <TextBlock FontFamily="{StaticResource CustomTextFont}">
+                                            <Run Text="Код:"/>
+                                            <Run Text="{Binding Id}"/>
+                                            <Run Text="{Binding Sex}" FontFamily="Segoe UI Symbol"/>
                                         </TextBlock>
-                                        <TextBlock>
-                                            <Run Text="Телефон: "/>
+
+                                        <TextBlock FontFamily="{StaticResource CustomTextFont}" Opacity="0.6">
+                                            <Path Data="{StaticResource phone}" Fill="Black" Width="10" Stretch="Uniform"/>
                                             <Run Text="{Binding Phone}"/>
                                         </TextBlock>
                                     </StackPanel>
-                                    <Button Content="Выбрать" Grid.Column="1" Height="35" Width="60"/>
                                 </Grid>
+                                
                             </Grid>
                         </Border>
                     </DataTemplate>

@@ -4,13 +4,32 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:HotelAccounting.Pages"
+      xmlns:elements="clr-namespace:HotelAccounting.Elements"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Список номеров">
-
+    
     <Border CornerRadius="5" Background="{DynamicResource SecundaryBackgroundColor}">
-        <Grid HorizontalAlignment="Center">
-            <ListView Margin="5" BorderThickness="0" Background="Transparent" x:Name="ListV" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <Grid HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Start: Combobox & SearchBox -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 5 20 0">
+                <ComboBox Foreground="{StaticResource LabelForeground}" SelectedIndex="0" FontSize="13" FontFamily="{StaticResource CustomTextFont}" 
+                          Style="{StaticResource ComboboxStyle}" IsReadOnly="True" x:Name="HouseCBox" Width="200" Margin="0 0 10 0" SelectionChanged="HouseCBox_SelectionChanged">
+                    <ListBoxItem Content="Все номера"/>
+                    <ListBoxItem Content="Свободные"/>
+                    <ListBoxItem Content="Занятые"/>
+                </ComboBox>
+                <elements:SearchBox x:Name="SBox" Width="300" KeyDown="SearchBox_KeyDown" KeyUp="SearchBox_KeyDown"/>
+            </StackPanel>
+            <!-- End: Combobox & SearchBox -->
+
+            <ListView HorizontalAlignment="Center" ItemContainerStyle="{StaticResource ListViewItemWithoutSelection}" Margin="5" SelectionMode="Single" 
+                      BorderThickness="0" Background="Transparent" x:Name="ListV" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel/>
@@ -18,7 +37,7 @@
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Border Width="240" Height="230" Background="LightGray" CornerRadius="15">
+                        <Border Width="240" Height="240" Background="{StaticResource PrimaryBackgroundColor}" CornerRadius="15">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="2*"/>
@@ -35,10 +54,11 @@
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <StackPanel>
-                                        <Label FontSize="13" FontFamily="{StaticResource LableMontserratFont}" Content="{Binding NameOfRoom}"/>
-                                        <TextBlock FontFamily="{StaticResource CustomTextFont}" Text="{Binding Equipment}" TextWrapping="Wrap" Height="100" Margin="10 0 0 0"/>
+                                        <Label FontSize="12" Margin="4 0 0 0" FontFamily="{StaticResource LableMontserratFont}" Content="{Binding NameOfRoom}"/>
+                                        <TextBlock Foreground="{StaticResource TBoxSelectionBrush}" FontFamily="{StaticResource CustomTextFont}" Text="{Binding Equipment}" TextWrapping="Wrap" Height="30" Margin="10 0 0 0"/>
+                                        <TextBlock FontFamily="{StaticResource CustomTextFont}" Cursor="Hand" Foreground="{StaticResource PrimaryBlueColor}" Text="Узнать больше..." TextWrapping="NoWrap" Margin="10 0 0 0"/>
                                     </StackPanel>
-                                    <Button Content="Выбрать" Style="{StaticResource AuthButton}" FontSize="10" FontFamily="{StaticResource LableMontserratFont}" Grid.Column="1" Height="35" Width="60" Click="ChooseRoom"  />
+                                    <Button Content="Выбрать" Style="{StaticResource AuthButton}" FontSize="10" FontFamily="{StaticResource LableMontserratFont}" Grid.Column="1" Height="30" Width="70" Click="ChooseRoom"/>
                                 </Grid>
                             </Grid>
                         </Border>

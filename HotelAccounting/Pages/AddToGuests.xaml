@@ -9,10 +9,6 @@
       Title="AddToGuests">
     <Page.Resources>
         <ResourceDictionary>
-            <Style TargetType="TextBox">
-                <Setter Property="Height" Value="35"/>
-                <Setter Property="Margin" Value="3"/>
-            </Style>
             <Style TargetType="RadioButton">
                 <Setter Property="FontFamily" Value="{StaticResource  CustomTextFont}"/>
             </Style>

@@ -19,7 +19,7 @@ namespace HotelAccounting.Windows
 
         private void AuthBtn_Click(object sender, RoutedEventArgs e)
         {
-            var success = Authorization.CheckLogAndPass(loginTBox.TxtBox.Text, passwordTBox.TxtBox.Text);
+            var success = Authorization.CheckLogAndPass(loginTBox.TxtBox.Text, passwordBox.PassBox.Password);
             if (success == "true")
             {
                 MainWindow mainWindow = new MainWindow();

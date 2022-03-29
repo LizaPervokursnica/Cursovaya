@@ -10,15 +10,7 @@
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         Background="Transparent" AllowsTransparency="True"
         ResizeMode="NoResize" WindowState="Normal" Icon="/Assets/Icons/hotel.ico">
-    <Window.Resources>
-        <ResourceDictionary>
-            <Style TargetType="TextBox">
-                <Setter Property="Height" Value="35"/>
-                <Setter Property="Margin" Value="3"/>
-            </Style>
-        </ResourceDictionary>
-    </Window.Resources>
-
+    
     <Border  CornerRadius="5" Background="{DynamicResource PrimaryBackgroundColor}" MouseDown="Border_MouseDown">
         <Grid>
             <!-- Start: Button Close | Restore | Minimize -->
@@ -49,7 +41,8 @@
             <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
                 <Label Content="Авторизация" Style="{StaticResource PageMainLabel}"/>
                 <elements:CuteTextBox x:Name="loginTBox" Title="Логин" Margin="0,5,0,5"/>
-                <elements:CuteTextBox x:Name="passwordTBox" Title="Пароль" Margin="0,0,0,2"/>
+                <!--<elements:CuteTextBox x:Name="passwordTBox" Title="Пароль" Margin="0,0,0,2"/>-->
+                <elements:СutePasswordBox x:Name="passwordBox" Height="35" Title="Пароль" Margin="0,0,0,2"/>
                 
                 <Button Style="{StaticResource AuthButton}" Margin="0 3 0 0 " Content="Войти" Click="AuthBtn_Click" />
                 <TextBlock Margin="0 6 0 0" HorizontalAlignment="Center" FontFamily="{StaticResource CustomTextFont}">

@@ -11,8 +11,6 @@ namespace HotelAccounting.Pages
     /// </summary>
     public partial class GuestPage : Page
     {
-
-
         public GuestPage()
         {
             InitializeComponent();

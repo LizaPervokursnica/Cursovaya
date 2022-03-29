@@ -10,6 +10,8 @@ namespace HotelAccounting
     /// </summary>
     public partial class MainWindow : Window
     {
+        
+
         public static Window window;
         public MainWindow()
         {
