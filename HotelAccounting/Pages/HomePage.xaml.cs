@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HotelAccounting.DataAccess;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -11,7 +12,7 @@ namespace HotelAccounting.Pages
     /// </summary>
     public partial class HomePage : Page
     { 
-        ApplicationContext context = new ApplicationContext();
+        HotelDbContext context = new HotelDbContext();
 
         public HomePage()
         {
