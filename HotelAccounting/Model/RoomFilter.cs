@@ -1,6 +1,6 @@
 ﻿namespace HotelAccounting.Model
 {
-    public enum RoomFilter
+    public enum RoomFilter : byte
     {
         All = 0,
         Free = 1,

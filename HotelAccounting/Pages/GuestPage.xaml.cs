@@ -12,12 +12,16 @@ namespace HotelAccounting.Pages
     /// </summary>
     public partial class GuestPage : Page
     {
+        HotelDbContext context = new HotelDbContext();
         public GuestPage()
         {
             InitializeComponent();
+
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+
             try
             {
-                HotelDbContext context = new HotelDbContext();
                 ListV.ItemsSource = context.Guests.ToArray();
             }
             catch { MessageBox.Show("Ошибка подключеия к базе данных", "Ошибка!", MessageBoxButton.OK); }
