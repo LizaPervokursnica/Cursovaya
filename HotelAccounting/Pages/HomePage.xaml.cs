@@ -1,12 +1,10 @@
 ﻿using HotelAccounting.DataAccess;
 using HotelAccounting.Model;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 
 namespace HotelAccounting.Pages
 {
@@ -24,10 +22,7 @@ namespace HotelAccounting.Pages
             {
                 ListV.ItemsSource = context.Rooms.OrderBy(x => x.Id).ToList();
             }
-            catch
-            {
-                MessageBox.Show("Ошибка подключеия к базе данных");
-            }
+            catch { MessageBox.Show("Ошибка подключеия к базе данных", "Ошибка!", MessageBoxButton.OK); }
         }
 
         private void ChooseRoom(object sender, RoutedEventArgs e)
@@ -52,7 +47,7 @@ namespace HotelAccounting.Pages
             if (ListV == null) ListV = new ListView();
 
             if (SBox == null) SBox = new Elements.SearchBox();
-            string? searchText = SBox.SearchItemTxt.Text;
+            string searchText = SBox.SearchItemTxt.Text;
 
             var selectedIndex = (RoomFilter)HouseCBox.SelectedIndex;
 
@@ -62,9 +57,7 @@ namespace HotelAccounting.Pages
                 var freeList = searchText == "" ? context.Rooms.Where(x => !x.GuestId.HasValue).OrderBy(x => x.Id).ToList() : context.Rooms.Where(x => !x.GuestId.HasValue && (x.Equipment.ToLower().Contains(searchText) || x.NameOfRoom.ToLower().Contains(searchText))).OrderBy(x => x.Id).ToList();
                 var freeObservableCollection = new ObservableCollection<Room>();
                 ListV.ItemsSource = freeObservableCollection;
-
                 freeList.ForEach(x => freeObservableCollection.Add(x));
-
                 return;
             }
 
@@ -74,9 +67,7 @@ namespace HotelAccounting.Pages
                 var occupiedList = searchText == "" ? context.Rooms.Where(x => x.GuestId.HasValue).OrderBy(x => x.Id).ToList() : context.Rooms.Where(x => x.GuestId.HasValue && (x.Equipment.ToLower().Contains(searchText) || x.NameOfRoom.ToLower().Contains(searchText))).OrderBy(x => x.Id).ToList();
                 var occupiedObservableCollection = new ObservableCollection<Room>();
                 ListV.ItemsSource = occupiedObservableCollection;
-
                 occupiedList.ForEach(x => occupiedObservableCollection.Add(x));
-
                 return;
             }
             else
@@ -85,7 +76,6 @@ namespace HotelAccounting.Pages
                 var list = searchText == "" ? context.Rooms.OrderBy(x => x.Id).ToList() : context.Rooms.Where(x => x.Equipment.ToLower().Contains(searchText) || x.NameOfRoom.ToLower().Contains(searchText)).OrderBy(x => x.Id).ToList();
                 var observableCollection = new ObservableCollection<Room>();
                 ListV.ItemsSource = observableCollection;
-
                 list.ForEach(x => observableCollection.Add(x));
             }
         }

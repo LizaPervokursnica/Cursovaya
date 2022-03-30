@@ -2,11 +2,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
 
-    <!-- AllFonts -->
+    <!-- AllFonts --><!--
     <FontFamily x:Key="TitleMontserratFont" >/Fonts/#Montserrat Alternates Medium</FontFamily> 
     <FontFamily x:Key="BoldTitleMontserratFont" >/Fonts/#Montserrat Alternates Bold</FontFamily> 
     <FontFamily x:Key="LableMontserratFont" >/Fonts/#Montserrat Alternates ExtraLight</FontFamily>
-    <FontFamily x:Key="CustomTextFont" >/Fonts/#Exo 2 Medium</FontFamily>
+    <FontFamily x:Key="CustomTextFont" >/Fonts/#Exo 2 Medium</FontFamily>-->
     
     <!-- Background Colors -->
     <SolidColorBrush x:Key="PrimaryBackgroundColor" Color="#f3f3f3"/>
