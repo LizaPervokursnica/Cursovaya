@@ -29,7 +29,7 @@
             </StackPanel>
             <!--<elements:CuteTextBox Title="Гендер"  Margin="0,0,0,5"/>-->
             <!--Мб здесь фото по ссылке или почта -->
-            <elements:CuteTextBox x:Name="MailTextBox" Title="Почта"/>
+            <elements:CuteTextBox x:Name="PhotoTextBox" Title="Фото"/>
 
             
             <Button x:Name="AddBtn" Style="{StaticResource AuthButton}" Margin="0 0 0 0 " Content="Добавить" Click="AddNewGuestToDb"/>

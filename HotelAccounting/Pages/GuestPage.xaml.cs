@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Controls;
 using HotelAccounting.DataAccess;
+using System.Collections.ObjectModel;
 
 namespace HotelAccounting.Pages
 {
@@ -42,7 +43,7 @@ namespace HotelAccounting.Pages
                 if (guest.Sex == "Мужской") toGuests.Male.IsChecked = true;
                 else if (guest.Sex == "Женский") toGuests.Female.IsChecked = true;
                 else toGuests.NoSex.IsChecked = true;
-                //toGuests.PhoneTextBox.TxtBox.Text = guest.;
+                toGuests.PhotoTextBox.TxtBox.Text = guest.Photo;
                 NavigationService.Navigate(toGuests);
             }
             else MessageBox.Show("Не выбран элемент для редактирования", "Выберите элемент", MessageBoxButton.OK);
@@ -60,6 +61,24 @@ namespace HotelAccounting.Pages
                 }
             }
             else MessageBox.Show("Не выбран элемент для удаления", "Выберите элемент", MessageBoxButton.OK);
+        }
+
+        private void SBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            GC.Collect();
+
+            if (ListV == null) ListV = new ListView();
+
+            if (SBox == null) SBox = new Elements.SearchBox();
+
+            string? searchText = SBox.SearchItemTxt.Text;
+
+            ListV.ItemsSource = null;
+            var list = searchText == "" ? context.Guests.OrderBy(x => x.Id).ToList() : context.Guests.Where(x => x.Name.ToLower().Contains(searchText) || x.Phone.ToLower().Contains(searchText)).OrderBy(x => x.Id).ToList();
+            var observableCollection = new ObservableCollection<Guest>();
+            ListV.ItemsSource = observableCollection;
+
+            list.ForEach(x => observableCollection.Add(x));
         }
     }
 }

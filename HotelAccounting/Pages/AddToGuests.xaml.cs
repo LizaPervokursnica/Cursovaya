@@ -28,7 +28,8 @@ namespace HotelAccounting.Pages
                 {
                     Name = NameTextBox.TxtBox.Text,
                     Phone = PhoneTextBox.TxtBox.Text,
-                    Sex = "Мужской"
+                    Sex = "Мужской",
+                    Photo = PhotoTextBox.TxtBox.Text
                 });
 
                 appContext.SaveChanges();

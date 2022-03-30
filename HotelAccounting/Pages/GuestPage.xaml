@@ -18,7 +18,7 @@
 
             <!-- Start: Add Button & SearchBox -->
             <StackPanel Orientation="Horizontal"  Grid.Row="0" HorizontalAlignment="Right" Margin="0 5 0 0">
-                <elements:SearchBox Width="300"/>
+                <elements:SearchBox x:Name="SBox" Width="300" KeyDown="SBox_KeyDown" KeyUp="SBox_KeyDown"/>
                 <elements:IconButtonBig BtnIcon="{StaticResource add}" ToolTip="Добавить гостя" Width="60" MouseDown="AddToDb_Click" />
                 
             </StackPanel>
