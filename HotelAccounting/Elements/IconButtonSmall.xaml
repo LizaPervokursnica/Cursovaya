@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     
-    <Border  x:Name="AddUpBorder" Background="Transparent" VerticalAlignment="Stretch" 
+    <Border x:Name="AddUpBorder" Cursor="Hand" Background="Transparent" VerticalAlignment="Stretch" 
              HorizontalAlignment="Stretch" CornerRadius="10">
         <Grid Background="Transparent">
             <Path Stretch="Uniform" Margin="4" Fill="Black" Data="{Binding BtnIcon}" 

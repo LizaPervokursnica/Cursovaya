@@ -51,13 +51,15 @@ namespace HotelAccounting.Pages
 
         private void DeleteLogicBtn_Click(object sender, MouseButtonEventArgs e)
         {
-            Guest? guest = ListV.SelectedItem as Guest;
+            Guest guest = ListV.SelectedItem as Guest;
             if (guest != null)
             {
                 var move = MessageBox.Show("Вы точно хотите удалить выбранный элемент?", "Внимание!", MessageBoxButton.YesNo);
                 if (move == MessageBoxResult.Yes)
                 {
-
+                    context.Guests.Remove(context.Guests.Find(guest.Id));
+                    context.SaveChanges();
+                    ListV.ItemsSource = context.Guests.ToArray();
                 }
             }
             else MessageBox.Show("Не выбран элемент для удаления", "Выберите элемент", MessageBoxButton.OK);

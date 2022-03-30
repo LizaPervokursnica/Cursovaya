@@ -7,7 +7,7 @@ namespace HotelAccounting.Classes
     {
         public static string CheckLogAndPass(string log, string pass)
         {
-            User? authUser = null;
+            User authUser = null;
             try
             {
                 using (HotelDbContext context = new HotelDbContext())

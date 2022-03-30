@@ -23,8 +23,8 @@
                 
             </StackPanel>
             <!-- End: Add Button & SearchBox -->
-            
-            <ListView Margin="5" BorderThickness="0" HorizontalAlignment="Center" Background="Transparent" x:Name="ListV" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+
+            <ListView ItemContainerStyle="{StaticResource ListViewItemWithoutSelection}" Margin="5" BorderThickness="0" HorizontalAlignment="Center" Background="Transparent" x:Name="ListV" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel/>
