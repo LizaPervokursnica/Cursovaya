@@ -12,14 +12,14 @@
         ResizeMode="NoResize" WindowState="Normal" Icon="/Assets/Icons/hotel.ico">
     
     
-    <!-- изменить выделение для элементов ComboBox
+    <!-- На кнопку выбрать и узнать больше - один метод,
+    открывающий page с фоткой, статусом, и т.д.
+    изменить выделение для элементов ComboBox
     Открытие полного описания по нажатию на "Узнать больше" 
-    Имя админа из таблицы
     Точка в каком-нибудь месте - свободна комната или нет. 
     Выбор гостя в комнате 
     Удаление на крестик из гостей
     Асинхронный метод для авторизации -->
-    
     
     <Border CornerRadius="8" Background="{DynamicResource PrimaryBackgroundColor}" MouseDown="Border_MouseDown_1">
         <Grid>
@@ -73,7 +73,7 @@
                     <StackPanel Grid.Row="3" VerticalAlignment="Bottom" Orientation="Horizontal" Width="200" Margin="0 0 0 20">
                         <Ellipse Width="40" Height="40" Margin="10 0 0 0">
                             <Ellipse.Fill>
-                                <ImageBrush ImageSource="/Assets/Avatars/Mama.jpg"/>
+                                <ImageBrush ImageSource="/Assets/Avatars/AdminPic.jpg"/>
                             </Ellipse.Fill>
                         </Ellipse>
                         <StackPanel Orientation="Vertical" Margin="8 0 0 0">

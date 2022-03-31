@@ -1,0 +1,42 @@
+﻿<Page x:Class="HotelAccounting.Pages.SpecificRoom"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HotelAccounting.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Конкретная комната">
+
+    <Border CornerRadius="5" Background="{DynamicResource SecundaryBackgroundColor}">
+        <Grid Margin="15" HorizontalAlignment="Center" Width="450">
+            <StackPanel>
+                <Label x:Name="RoomNameLabel" SnapsToDevicePixels="True" Style="{StaticResource PageMainLabel}"/>
+                <Label x:Name="RoomStatus" FontSize="11"  Margin="0 -5 0 0" Style="{StaticResource PageMainLabel}"/>
+                <Border CornerRadius="15" Margin="20" Background="{StaticResource SecundaryGrayColor}">
+                    <StackPanel Margin="0 -10 0 0">
+                        <Rectangle Height="200" RadiusX="15" RadiusY="15" Margin="5 0 5 0">
+                            <Rectangle.Fill>
+                                <ImageBrush x:Name="RoomPhoto" Stretch="UniformToFill" ImageSource="{Binding PhotoURL}"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Margin="10" x:Name="RoomDescription" TextWrapping="Wrap" Background="Transparent" FontFamily="{StaticResource CustomTextFont}"/>
+                    </StackPanel>
+                </Border>
+                <StackPanel Margin="0 -10 0 10" HorizontalAlignment="Center" Orientation="Horizontal">
+                    <Label Content="Гость: " FontSize="13" Style="{StaticResource PageMainLabel}"/>
+                    <ComboBox x:Name="GComboBox" Width="300" Style="{StaticResource ComboboxStyle}" IsReadOnly="True" Height="35" FontSize="13" FontFamily="{StaticResource CustomTextFont}" Foreground="{StaticResource LabelForeground}"/>
+                </StackPanel>
+                    <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="StatusChangeBtn" Margin="5" Style="{StaticResource AuthButton}"/>
+                    <Button x:Name="CancelBtn" Content="Отмена" Margin="5" Style="{StaticResource AuthButtonAlterStyle}" Click="GoBack" Grid.Column="1"/>
+                </Grid>
+               
+            </StackPanel>
+        </Grid>
+    </Border>
+</Page>

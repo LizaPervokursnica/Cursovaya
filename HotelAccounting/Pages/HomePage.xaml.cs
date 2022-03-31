@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace HotelAccounting.Pages
 {
@@ -31,15 +32,35 @@ namespace HotelAccounting.Pages
 
             if (button.DataContext is Room room)
             {
-                MessageBox.Show(room.NameOfRoom);
+                var specifRoom = new SpecificRoom();
+                specifRoom.RoomNameLabel.Content = room.NameOfRoom;
+                if (room.GuestId == null)
+                {
+                    specifRoom.RoomStatus.Content = "Свободен";
+                    specifRoom.RoomStatus.Foreground = new SolidColorBrush(Colors.Green);
+                    specifRoom.StatusChangeBtn.Content = "Вселить";
+                }
+                else if (room.GuestId != null)
+                {
+                    specifRoom.RoomStatus.Content = "Занят";
+                    specifRoom.RoomStatus.Foreground = new SolidColorBrush(Colors.Red);
+                    specifRoom.StatusChangeBtn.Content = "Выселить";
+                }
+                specifRoom.RoomDescription.Text = room.Equipment;
+                specifRoom.PhotoURL = room.Photo;
+                
+                NavigationService.Navigate(specifRoom);
             }
         }
+        private void TextBlock_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
 
+        }
         private void HouseCBox_SelectionChanged(object sender, SelectionChangedEventArgs e) => UpdateList();
 
         private void SearchBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e) => UpdateList();
 
-       public void UpdateList()
+        public void UpdateList()
         {
             GC.Collect();
             GC.WaitForPendingFinalizers();
@@ -79,5 +100,7 @@ namespace HotelAccounting.Pages
                 list.ForEach(x => observableCollection.Add(x));
             }
         }
+
+
     }
 }

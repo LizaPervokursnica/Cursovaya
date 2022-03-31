@@ -56,7 +56,7 @@
                                     <StackPanel>
                                         <Label FontSize="12" Margin="4 0 0 0" FontFamily="{StaticResource LableMontserratFont}" Content="{Binding NameOfRoom}"/>
                                         <TextBlock Foreground="{StaticResource TBoxSelectionBrush}" FontFamily="{StaticResource CustomTextFont}" Text="{Binding Equipment}" TextWrapping="Wrap" Height="30" Margin="10 0 0 0"/>
-                                        <TextBlock FontFamily="{StaticResource CustomTextFont}" Cursor="Hand" Foreground="{StaticResource PrimaryBlueColor}" Text="Узнать больше..." TextWrapping="NoWrap" Margin="10 0 0 0"/>
+                                        <TextBlock  FontFamily="{StaticResource CustomTextFont}" Cursor="Hand" Foreground="{StaticResource PrimaryBlueColor}" Text="Узнать больше..." TextWrapping="NoWrap" Margin="10 0 0 0" MouseDown="TextBlock_MouseDown"/>
                                     </StackPanel>
                                     <Button Content="Выбрать" Style="{StaticResource AuthButton}" FontSize="10" FontFamily="{StaticResource LableMontserratFont}" Grid.Column="1" Height="30" Width="70" Click="ChooseRoom"/>
                                 </Grid>
