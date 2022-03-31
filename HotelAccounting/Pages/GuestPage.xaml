@@ -46,15 +46,14 @@
                                 
                                 <Rectangle Grid.Row="1" RadiusX="10" RadiusY="10" Margin="5 0 5 15" Width="60">
                                     <Rectangle.Fill>
-                                        <ImageBrush Stretch="UniformToFill" ImageSource="{Binding Photo}"/>
+                                        <ImageBrush Stretch="UniformToFill" ImageSource="{Binding Photo}" />
                                     </Rectangle.Fill>
                                 </Rectangle>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 5 5 0" Grid.Column="2">
-                                <!--<elements:IconButtonSmall BtnIcon="{StaticResource edit}" ToolTip="Радактировать" Width="25" MouseDown="EditLogicBtn_Click" />-->
-                                <elements:IconButtonSmall BtnIcon="{StaticResource delete}" ToolTip="Удалить" Width="25" MouseDown="DeleteLogicBtn_Click" />
+                                    <elements:IconButtonSmall BtnIcon="{StaticResource delete}" ToolTip="Удалить" Width="25" MouseDown="DeleteLogicBtn_Click" />
                                 </StackPanel>
                                 
-                                <Button Content="Изменить" Style="{StaticResource AuthButton}" FontSize="10" Grid.Row="1" Margin="0 0 0 15" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="1" Height="25" Width="100"/>
+                                <Button Content="Изменить"  Style="{StaticResource AuthButton}" FontSize="10" Grid.Row="1" Margin="0 0 0 15" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="1" Height="25" Width="100" Click="EditLogicBtn_Click"/>
 
                                 <!-- Info about guest -->
                                 <Grid Grid.Row="1" Grid.Column="1">

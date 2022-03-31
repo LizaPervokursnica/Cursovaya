@@ -14,7 +14,7 @@
             <Label x:Name="lbl" FontFamily="{StaticResource CustomTextFont}" Content="{Binding Title}" HorizontalAlignment ="Left" 
                    Margin ="7,1,7,0" FontSize ="13" FontWeight="Normal"  Padding="4 0 0 0"  VerticalAlignment ="Center" 
                    Foreground="{StaticResource LabelForeground}"/>
-            <TextBox x:Name="TxtBox" Style="{StaticResource MainTextBox}" Padding="10,0,5,5" VerticalContentAlignment ="Bottom" HorizontalAlignment ="Stretch" 
+            <TextBox x:Name="TxtBox" Style="{StaticResource MainTextBox}" Padding="10,0,10,5" VerticalContentAlignment ="Bottom" HorizontalAlignment ="Stretch" 
                      LostKeyboardFocus="Nametxtbox_LostKeyboardFocus" GotKeyboardFocus="Nametxtbox_GotKeyboardFocus"/>
         </Grid>
     </Border>

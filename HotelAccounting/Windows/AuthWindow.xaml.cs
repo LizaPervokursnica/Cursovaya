@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using HotelAccounting.Classes;
@@ -17,8 +18,9 @@ namespace HotelAccounting.Windows
             window = this;
         }
 
-        private void AuthBtn_Click(object sender, RoutedEventArgs e)
+        private async void AuthBtn_Click(object sender, RoutedEventArgs e)
         {
+
             var success = Authorization.CheckLogAndPass(loginTBox.TxtBox.Text, passwordBox.PassBox.Password);
             if (success == "true")
             {
