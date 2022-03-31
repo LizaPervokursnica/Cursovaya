@@ -28,7 +28,7 @@
                 <RadioButton GroupName="SexType" x:Name="NoSex" Content="Неизвестно" />
             </StackPanel>
             <elements:CuteTextBox x:Name="PhotoTextBox" Title="Ссылка на фото"/>
-            <Button x:Name="AddBtn" Style="{StaticResource AuthButton}" Margin="0 0 0 0 " Content="Добавить" Click="AddNewGuestToDb"/>
+            <Button x:Name="AddBtn" Style="{StaticResource AuthButton}" Margin="0 0 0 0 " Click="AddNewGuestToDb"/>
             <Button x:Name="CancelBtn" Style="{StaticResource AuthButtonAlterStyle}" Margin="0 3 0 0 " Content="Отмена" Click="GoBack"/>
             <Label x:Name="GID" Width="0" Height="0"/>
         </StackPanel>

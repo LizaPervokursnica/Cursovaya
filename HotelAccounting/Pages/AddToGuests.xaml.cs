@@ -26,17 +26,21 @@ namespace HotelAccounting.Pages
             {
                 using (HotelDbContext appContext = new HotelDbContext())
                 {
+                    string sex = "";
+                    if (Male.IsChecked == true) sex = "♂";
+                    else if (Female.IsChecked == true) sex = "♀";
+                    else sex = " ";
 
                     appContext.Guests.Add(new Guest
                     {
                         Name = NameTextBox.TxtBox.Text,
                         Phone = PhoneTextBox.TxtBox.Text,
-                        Sex = "Мужской",
+                        Sex = sex,
                         Photo = PhotoTextBox.TxtBox.Text
                     });
-
                     appContext.SaveChanges();
                 }
+                NavigationService.Navigate(new Uri("Pages/GuestPage.xaml", UriKind.RelativeOrAbsolute));
             }
             else if(AddBtn.Content == "Сохранить")
             {
@@ -51,6 +55,7 @@ namespace HotelAccounting.Pages
                     else guest.Sex = " ";
                     appContext.SaveChanges();
                 }
+                NavigationService.Navigate(new Uri("Pages/GuestPage.xaml", UriKind.RelativeOrAbsolute));
             }
         }
     }

@@ -12,12 +12,13 @@
         ResizeMode="NoResize" WindowState="Normal" Icon="/Assets/Icons/hotel.ico">
     
     
-    <!-- изменить выделение для элементов ListView
+    <!-- изменить выделение для элементов ComboBox
     Открытие полного описания по нажатию на "Узнать больше" 
     Имя админа из таблицы
-    Сделать макет для посетителя
     Точка в каком-нибудь месте - свободна комната или нет. 
-    Выбор гостя в комнате -->
+    Выбор гостя в комнате 
+    Удаление на крестик из гостей
+    Асинхронный метод для авторизации -->
     
     
     <Border CornerRadius="8" Background="{DynamicResource PrimaryBackgroundColor}" MouseDown="Border_MouseDown_1">
@@ -39,7 +40,7 @@
                     <!-- Logo -->
                     <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Top">
                         <Path Data="{DynamicResource logo}" Margin="18 0 0 0" Stretch="Fill" Fill="{DynamicResource PrimaryBlueColor}" Width="25" Height="25" HorizontalAlignment="Left"/>
-                        <Label Content="Hotel OwO" FontFamily="{StaticResource BoldTitleMontserratFont}" Foreground="{DynamicResource PrimaryBlueColor}"  FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="10 0 0 0"/>
+                        <Label Content="Hotel OwO" FontFamily="{StaticResource BoldTitleMontserratFont}" Foreground="{DynamicResource PrimaryBlueColor}"  FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="12 0 0 0"/>
                     </StackPanel>
 
                     <!-- Menu -->
@@ -67,8 +68,6 @@
                     <StackPanel Grid.Row="3">
                         <RadioButton x:Name="rdHome" IsChecked="True" Content="Номера" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource home}" FontFamily="{StaticResource LableMontserratFont}" Click="rdHome_Click" Cursor="Hand"/>
                         <RadioButton x:Name="rdSounds" Content="Гости" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource person}" FontFamily="{StaticResource LableMontserratFont}" Margin="0 5 0 5" Click="rdSounds_Click"/>
-                        <!--<RadioButton x:Name="rdNotes" Content="Notes" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource notes}" Click="rdNotes_Click"/>
-                        <RadioButton x:Name="rdPayment" Content="Payment" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource payment}" Margin="0 5 0 5" Click="rdPayment_Click"/>-->
                     </StackPanel>
 
                     <StackPanel Grid.Row="3" VerticalAlignment="Bottom" Orientation="Horizontal" Width="200" Margin="0 0 0 20">

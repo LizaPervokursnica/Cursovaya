@@ -28,13 +28,18 @@ namespace HotelAccounting.Pages
             catch { MessageBox.Show("Ошибка подключеия к базе данных", "Ошибка!", MessageBoxButton.OK); }
         }
 
-        private void AddToDb_Click(object sender, MouseButtonEventArgs e) =>
-            NavigationService.Navigate(new Uri("Pages/AddToGuests.xaml", UriKind.RelativeOrAbsolute));
+        private void AddToDb_Click(object sender, MouseButtonEventArgs e)
+        {
+            AddToGuests toGuests = new AddToGuests();
+            toGuests.AddBtn.Content = "Добавить";
+            NavigationService.Navigate(toGuests);            
+        }
 
         private void DeleteLogicBtn_Click(object sender, MouseButtonEventArgs e)
         {
-            Guest guest = ListV.SelectedItem as Guest;
-            if (guest != null)
+            var button = sender as Elements.IconButtonSmall;
+
+            if (button.AddUpBorder.DataContext is Guest guest)
             {
                 var move = MessageBox.Show("Вы точно хотите удалить выбранный элемент?", "Внимание!", MessageBoxButton.YesNo);
                 if (move == MessageBoxResult.Yes)

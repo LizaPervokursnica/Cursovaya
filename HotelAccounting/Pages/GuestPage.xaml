@@ -46,7 +46,7 @@
                                 
                                 <Rectangle Grid.Row="1" RadiusX="10" RadiusY="10" Margin="5 0 5 15" Width="60">
                                     <Rectangle.Fill>
-                                        <ImageBrush Stretch="UniformToFill" ImageSource="{Binding Photo}" />
+                                        <ImageBrush Stretch="UniformToFill"   ImageSource="{Binding Photo}" />
                                     </Rectangle.Fill>
                                 </Rectangle>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 5 5 0" Grid.Column="2">

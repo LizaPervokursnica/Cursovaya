@@ -45,12 +45,5 @@ namespace HotelAccounting
 
         private void Border_MouseDown_1(object sender, MouseButtonEventArgs e) => Keyboard.ClearFocus();
         
-        //private void rdNotes_Click(object sender, RoutedEventArgs e) =>
-        //    PagesNavigation.Navigate(new Uri("Pages/NotesPage.xaml", UriKind.RelativeOrAbsolute));
-
-
-        //private void rdPayment_Click(object sender, RoutedEventArgs e) =>
-        //    PagesNavigation.Navigate(new Uri("Pages/PaymentPage.xaml", UriKind.RelativeOrAbsolute));
-
     }
 }
