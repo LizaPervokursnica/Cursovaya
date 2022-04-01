@@ -5,6 +5,7 @@ using System.Windows.Input;
 using System.Windows.Controls;
 using HotelAccounting.DataAccess;
 using System.Collections.ObjectModel;
+using HotelAccounting.Elements;
 
 namespace HotelAccounting.Pages
 {
@@ -35,30 +36,13 @@ namespace HotelAccounting.Pages
             NavigationService.Navigate(toGuests);            
         }
 
-        private void DeleteLogicBtn_Click(object sender, MouseButtonEventArgs e)
-        {
-            var button = sender as Elements.IconButtonSmall;
-
-            if (button.AddUpBorder.DataContext is Guest guest)
-            {
-                var move = MessageBox.Show("Вы точно хотите удалить выбранный элемент?", "Внимание!", MessageBoxButton.YesNo);
-                if (move == MessageBoxResult.Yes)
-                {
-                    context.Guests.Remove(context.Guests.Find(guest.Id));
-                    context.SaveChanges();
-                    ListV.ItemsSource = context.Guests.ToArray();
-                }
-            }
-            else MessageBox.Show("Не выбран элемент для удаления", "Выберите элемент", MessageBoxButton.OK);
-        }
-
         private void SBox_KeyDown(object sender, KeyEventArgs e)
         {
             GC.Collect();
 
             if (ListV == null) ListV = new ListView();
 
-            if (SBox == null) SBox = new Elements.SearchBox();
+            if (SBox == null) SBox = new SearchBox();
 
             string? searchText = SBox.SearchItemTxt.Text;
 
@@ -90,6 +74,23 @@ namespace HotelAccounting.Pages
                 NavigationService.Navigate(toGuests);
             }
             else MessageBox.Show("Не выбран элемент для редактирования", "Выберите элемент", MessageBoxButton.OK);
+        }
+
+        private void DeleteThis(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+
+            if (button.DataContext is Guest guest)
+            {
+                var move = MessageBox.Show("Вы точно хотите удалить выбранный элемент?", "Внимание!", MessageBoxButton.YesNo);
+                if (move == MessageBoxResult.Yes)
+                {
+                    context.Guests.Remove(context.Guests.Find(guest.Id));
+                    context.SaveChanges();
+                    ListV.ItemsSource = context.Guests.ToArray();
+                }
+            }
+            else MessageBox.Show("Не выбран элемент для удаления", "Выберите элемент", MessageBoxButton.OK);
         }
     }
 }

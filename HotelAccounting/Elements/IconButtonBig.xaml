@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <Border Background="Transparent" x:Name="AddUpBorder" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" CornerRadius="10">
+    <Border Background="Transparent" Cursor="Hand" x:Name="AddUpBorder" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" CornerRadius="10">
         <Grid >
             <Path x:Name="Path6" Stretch="Uniform" Margin="10" Data="{Binding BtnIcon}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Path.Style>

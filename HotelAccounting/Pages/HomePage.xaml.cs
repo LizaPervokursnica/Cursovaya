@@ -54,8 +54,31 @@ namespace HotelAccounting.Pages
         }
         private void TextBlock_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            var button = sender as TextBlock;
 
+            if (button.DataContext is Room room)
+            {
+                var specifRoom = new SpecificRoom();
+                specifRoom.RoomNameLabel.Content = room.NameOfRoom;
+                if (room.GuestId == null)
+                {
+                    specifRoom.RoomStatus.Content = "Свободен";
+                    specifRoom.RoomStatus.Foreground = new SolidColorBrush(Colors.Green);
+                    specifRoom.StatusChangeBtn.Content = "Вселить";
+                }
+                else if (room.GuestId != null)
+                {
+                    specifRoom.RoomStatus.Content = "Занят";
+                    specifRoom.RoomStatus.Foreground = new SolidColorBrush(Colors.Red);
+                    specifRoom.StatusChangeBtn.Content = "Выселить";
+                }
+                specifRoom.RoomDescription.Text = room.Equipment;
+                specifRoom.PhotoURL = room.Photo;
+
+                NavigationService.Navigate(specifRoom);
+            }
         }
+
         private void HouseCBox_SelectionChanged(object sender, SelectionChangedEventArgs e) => UpdateList();
 
         private void SearchBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e) => UpdateList();
