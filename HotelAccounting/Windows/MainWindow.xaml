@@ -3,8 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:HotelAccounting"
-        xmlns:elements="clr-namespace:HotelAccounting.Elements"
         mc:Ignorable="d" Name="home"
         Title="Система управления отелем" Height="650" Width="1000"
         WindowStartupLocation="CenterScreen" WindowStyle="None"
@@ -12,13 +10,7 @@
         ResizeMode="NoResize" WindowState="Normal" Icon="/Assets/Icons/hotel.ico">
     
     
-    <!-- На кнопку выбрать и узнать больше - один метод,
-    открывающий page с фоткой, статусом, и т.д.
-    изменить выделение для элементов ComboBox
-    Открытие полного описания по нажатию на "Узнать больше" 
-    Точка в каком-нибудь месте - свободна комната или нет. 
-    Выбор гостя в комнате 
-    Удаление на крестик из гостей
+    <!-- изменить выделение для элементов ComboBox
     Асинхронный метод для авторизации -->
     
     <Border CornerRadius="8" Background="{DynamicResource PrimaryBackgroundColor}" MouseDown="Border_MouseDown_1">

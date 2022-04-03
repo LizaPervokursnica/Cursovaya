@@ -106,7 +106,5 @@ namespace HotelAccounting.Pages
                 list.ForEach(x => observableCollection.Add(x));
             }
         }
-
-
     }
 }
