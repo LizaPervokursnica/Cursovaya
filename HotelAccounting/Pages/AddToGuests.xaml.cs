@@ -1,5 +1,4 @@
-﻿using HotelAccounting.Classes;
-using HotelAccounting.DataAccess;
+﻿using HotelAccounting.DataAccess;
 using System;
 using System.Linq;
 using System.Windows;
