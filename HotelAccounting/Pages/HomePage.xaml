@@ -43,7 +43,7 @@
                                     <RowDefinition Height="2*"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
-                                <Rectangle RadiusX="15" RadiusY="15" Margin="5">
+                                <Rectangle SnapsToDevicePixels="True" RadiusX="15" RadiusY="15" Margin="5">
                                     <Rectangle.Fill>
                                         <ImageBrush Stretch="UniformToFill" ImageSource="{Binding Photo}"/>
                                     </Rectangle.Fill>

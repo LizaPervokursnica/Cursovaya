@@ -41,11 +41,9 @@ namespace HotelAccounting.Pages
             GC.Collect();
 
             if (ListV == null) ListV = new ListView();
-
             if (SBox == null) SBox = new SearchBox();
 
-            string? searchText = SBox.SearchItemTxt.Text;
-
+            string searchText = SBox.SearchItemTxt.Text;
             ListV.ItemsSource = null;
             var list = searchText == "" ? context.Guests.OrderBy(x => x.Id).ToList() : context.Guests.Where(x => x.Name.ToLower().Contains(searchText) || x.Phone.ToLower().Contains(searchText)).OrderBy(x => x.Id).ToList();
             var observableCollection = new ObservableCollection<Guest>();
@@ -56,7 +54,6 @@ namespace HotelAccounting.Pages
 
         private void EditLogicBtn_Click(object sender, RoutedEventArgs e)
         {
-
             var button = sender as Button;
 
             if (button.DataContext is Guest guest)

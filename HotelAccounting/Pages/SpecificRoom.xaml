@@ -9,37 +9,69 @@
       Title="Конкретная комната">
 
     <Border CornerRadius="5" Background="{DynamicResource SecundaryBackgroundColor}">
-        <Grid Margin="15" HorizontalAlignment="Center" Width="450">
-            <StackPanel>
+        <Grid Margin="15" HorizontalAlignment="Center" Width="650">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.ColumnSpan="2">
                 <Label x:Name="RoomNameLabel" SnapsToDevicePixels="True" Style="{StaticResource PageMainLabel}"/>
                 <Label x:Name="RoomStatus" FontSize="11"  Margin="0 -5 0 0" Style="{StaticResource PageMainLabel}"/>
                 <Border CornerRadius="15" Margin="20" Background="{StaticResource SecundaryGrayColor}">
-                    <StackPanel Margin="0 -10 0 0">
-                        <Rectangle Height="200" RadiusX="15" RadiusY="15" Margin="5 0 5 0">
+                    <StackPanel Margin="0 0 0 0" Orientation="Horizontal">
+                        <Rectangle Width="320" Height="250" RadiusX="15" RadiusY="15" Margin="0 0 5 0">
                             <Rectangle.Fill>
                                 <ImageBrush x:Name="RoomPhoto" Stretch="UniformToFill" ImageSource="{Binding PhotoURL}"/>
                             </Rectangle.Fill>
                         </Rectangle>
-                        <TextBlock HorizontalAlignment="Center" Foreground="{StaticResource TextSecundaryColor}" FontSize="14" Margin="13 10 13 13" 
-                                   x:Name="RoomDescription" TextWrapping="Wrap" Background="Transparent" FontFamily="{StaticResource CustomTextFont}"/>
+                        <TextBlock HorizontalAlignment="Center" SnapsToDevicePixels="True" Foreground="{StaticResource TextSecundaryColor}" FontSize="14" Margin="13 13 13 13" 
+                                   x:Name="RoomDescription" Width="240" TextWrapping="Wrap" Background="Transparent" FontFamily="{StaticResource CustomTextFont}"/>
                     </StackPanel>
                 </Border>
-                <StackPanel Margin="0 -10 0 10" HorizontalAlignment="Center" Orientation="Horizontal">
-                    <Label Content="Гость: " FontSize="13" Style="{StaticResource PageMainLabel}"/>
-                    <ComboBox x:Name="GComboBox" ItemsSource="{Binding Name}" Width="300" Style="{StaticResource ComboboxStyle}" IsReadOnly="True" Height="35" FontSize="13" FontFamily="{StaticResource CustomTextFont}" Foreground="{StaticResource LabelForeground}"/>
-                    
-
-                </StackPanel>
-                    <Grid>
+                
+                <!--Bottom Part-->
+                <Grid Margin="20 0 20 10" Grid.ColumnSpan="2">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="200"/>
                     </Grid.ColumnDefinitions>
-                    <Button x:Name="StatusChangeBtn" Margin="5" Style="{StaticResource AuthButton}"/>
-                    <Button x:Name="CancelBtn" Content="Отмена" Margin="5" Style="{StaticResource AuthButtonAlterStyle}" Click="GoBack" Grid.Column="1"/>
+                    <Label Content="Гость" Grid.Column="1" FontSize="13" Style="{StaticResource PageMainLabel}"/>
+                    <ComboBox x:Name="GComboBox"  HorizontalAlignment="Stretch" Style="{StaticResource ComboboxStyle}" 
+                          Height="60" IsReadOnly="True" FontSize="13" FontFamily="{StaticResource CustomTextFont}" Foreground="{StaticResource LabelForeground}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <StackPanel>
+                                        <TextBlock Foreground="{StaticResource TextPrimaryColor}" FontFamily="{StaticResource CustomTextFont}">
+                                            <Run Text="{Binding Name}" FontWeight="DemiBold"/>
+                                            <Run Text="{Binding Sex}" FontFamily="Segoe UI Symbol"/>
+                                        </TextBlock>
+
+                                        <TextBlock Foreground="{StaticResource TextPrimaryColor}" FontFamily="{StaticResource CustomTextFont}">
+                                            <Run Text="Код:"/>
+                                            <Run Text="{Binding Id}"/>
+                                            
+                                        </TextBlock>
+
+                                        <TextBlock Foreground="{StaticResource TextPrimaryColor}" FontFamily="{StaticResource CustomTextFont}" Opacity="0.6">
+                                            <Path Data="{StaticResource phone}" Fill="{StaticResource TextPrimaryColor}" Width="10" Stretch="Uniform"/>
+                                            <Run Text="{Binding Phone}"/>
+                                        </TextBlock>
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <StackPanel Grid.Column="2">
+                    <Button x:Name="StatusChangeBtn" Margin="0 0 0 5" Style="{StaticResource AuthButton}"/>
+                    <Button x:Name="CancelBtn" Content="Отмена" Margin="0" Style="{StaticResource AuthButtonAlterStyle}" Click="GoBack"/>
+                    </StackPanel>
                 </Grid>
-               
+                
             </StackPanel>
+
+            
         </Grid>
     </Border>
 </Page>
