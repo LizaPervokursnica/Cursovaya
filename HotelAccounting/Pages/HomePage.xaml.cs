@@ -19,6 +19,10 @@ namespace HotelAccounting.Pages
         public HomePage()
         {
             InitializeComponent();
+
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+
             try
             {
                 ListV.ItemsSource = context.Rooms.OrderBy(x => x.Id).ToList();
