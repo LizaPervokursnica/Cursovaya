@@ -29,57 +29,37 @@ namespace HotelAccounting.Pages
         private void ChooseRoom(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
-
-            if (button.DataContext is Room room)
-            {
-                var specifRoom = new SpecificRoom();
-                specifRoom.RoomNameLabel.Content = room.NameOfRoom;
-                if (room.GuestId == null)
-                {
-                    specifRoom.RoomStatus.Content = "Свободен";
-                    specifRoom.RoomStatus.Foreground = new SolidColorBrush(Colors.Green);
-                    specifRoom.StatusChangeBtn.Content = "Вселить";
-                }
-                else if (room.GuestId != null)
-                {
-                    specifRoom.RoomStatus.Content = "Занят";
-                    specifRoom.RoomStatus.Foreground = new SolidColorBrush(Colors.Red);
-                    specifRoom.GComboBox.ItemsSource = context.Guests.Where(x => x.Id == room.GuestId).ToList();
-                    specifRoom.GComboBox.SelectedIndex = 0;
-                    specifRoom.GComboBox.IsEnabled = false;
-                    specifRoom.StatusChangeBtn.Content = "Выселить";
-                }
-                specifRoom.RoomDescription.Text = room.Equipment;
-                specifRoom.PhotoURL = room.Photo;
-                
-                NavigationService.Navigate(specifRoom);
-            }
+            if (button.DataContext is Room room) MoveToMain(room);
         }
         private void TextBlock_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var button = sender as TextBlock;
+            if (button.DataContext is Room room) MoveToMain(room);
+        }
 
-            if (button.DataContext is Room room)
+        private void MoveToMain(Room room)
+        {
+            var specifRoom = new SpecificRoom();
+            specifRoom.RoomNameLabel.Content = room.NameOfRoom;
+            if (room.GuestId == null)
             {
-                var specifRoom = new SpecificRoom();
-                specifRoom.RoomNameLabel.Content = room.NameOfRoom;
-                if (room.GuestId == null)
-                {
-                    specifRoom.RoomStatus.Content = "Свободен";
-                    specifRoom.RoomStatus.Foreground = new SolidColorBrush(Colors.Green);
-                    specifRoom.StatusChangeBtn.Content = "Вселить";
-                }
-                else if (room.GuestId != null)
-                {
-                    specifRoom.RoomStatus.Content = "Занят";
-                    specifRoom.RoomStatus.Foreground = new SolidColorBrush(Colors.Red);
-                    specifRoom.StatusChangeBtn.Content = "Выселить";
-                }
-                specifRoom.RoomDescription.Text = room.Equipment;
-                specifRoom.PhotoURL = room.Photo;
-
-                NavigationService.Navigate(specifRoom);
+                specifRoom.RoomStatus.Content = "Свободен";
+                specifRoom.RoomStatus.Foreground = new SolidColorBrush(Colors.Green);
+                specifRoom.StatusChangeBtn.Content = "Вселить";
             }
+            else if (room.GuestId != null)
+            {
+                specifRoom.RoomStatus.Content = "Занят";
+                specifRoom.RoomStatus.Foreground = new SolidColorBrush(Colors.Red);
+                specifRoom.GComboBox.ItemsSource = context.Guests.Where(x => x.Id == room.GuestId).ToList();
+                specifRoom.GComboBox.SelectedIndex = 0;
+                specifRoom.GComboBox.IsEnabled = false;
+                specifRoom.StatusChangeBtn.Content = "Выселить";
+            }
+            specifRoom.RoomDescription.Text = room.Equipment;
+            specifRoom.PhotoURL = room.Photo;
+            specifRoom.RoomID = room.Id;
+            NavigationService.Navigate(specifRoom);
         }
 
         private void HouseCBox_SelectionChanged(object sender, SelectionChangedEventArgs e) => UpdateList();
