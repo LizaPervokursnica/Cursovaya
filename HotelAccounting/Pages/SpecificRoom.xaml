@@ -64,7 +64,7 @@
                         </ComboBox.ItemTemplate>
                     </ComboBox>
                     <StackPanel Grid.Column="2">
-                    <Button x:Name="StatusChangeBtn" Margin="0 0 0 5" Style="{StaticResource AuthButton}"/>
+                    <Button x:Name="StatusChangeBtn" Margin="0 0 0 5" Style="{StaticResource AuthButton}" Click="CheckInOutRoom_Click"/>
                     <Button x:Name="CancelBtn" Content="Отмена" Margin="0" Style="{StaticResource AuthButtonAlterStyle}" Click="GoBack"/>
                     </StackPanel>
                 </Grid>

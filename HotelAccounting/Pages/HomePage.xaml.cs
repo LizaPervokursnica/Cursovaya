@@ -44,6 +44,9 @@ namespace HotelAccounting.Pages
                 {
                     specifRoom.RoomStatus.Content = "Занят";
                     specifRoom.RoomStatus.Foreground = new SolidColorBrush(Colors.Red);
+                    specifRoom.GComboBox.ItemsSource = context.Guests.Where(x => x.Id == room.GuestId).ToList();
+                    specifRoom.GComboBox.SelectedIndex = 0;
+                    specifRoom.GComboBox.IsEnabled = false;
                     specifRoom.StatusChangeBtn.Content = "Выселить";
                 }
                 specifRoom.RoomDescription.Text = room.Equipment;

@@ -13,17 +13,28 @@ namespace HotelAccounting.Pages
     /// </summary>
     public partial class SpecificRoom : Page
     {
+        HotelDbContext dbContext = new HotelDbContext();
         public string PhotoURL { get; set; }
         public SpecificRoom()
         {
             InitializeComponent();
             DataContext = this;
-            HotelDbContext dbContext = new HotelDbContext();
             GComboBox.ItemsSource = dbContext.Guests.ToList();
-
         }
 
         private void GoBack(object sender, RoutedEventArgs e) =>
             NavigationService.Navigate(new Uri("Pages/HomePage.xaml", UriKind.RelativeOrAbsolute));
+
+        private void CheckInOutRoom_Click(object sender, RoutedEventArgs e)
+        {
+            if(StatusChangeBtn.Content == "Вселить")
+            {
+
+            }
+            else if(StatusChangeBtn.Content == "Выселить")
+            {
+
+            }
+        }
     }
 }
