@@ -30,7 +30,7 @@
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Border Width="200" Height="110" Background="{StaticResource PrimaryBackgroundColor}" CornerRadius="15">
+                        <Border Width="205" Height="110" Background="{StaticResource PrimaryBackgroundColor}" CornerRadius="15">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="23"/>
@@ -51,7 +51,7 @@
                                     <Button Style="{StaticResource SmallButtonForGuestsPage}" ToolTip="Удалить" Width="25" Height="17" Click="DeleteThis"/>
                                 </StackPanel>
                                 
-                                <Button Content="Изменить"  Style="{StaticResource AuthButton}" FontSize="10" Grid.Row="1" Margin="0 0 0 15" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="1" Height="25" Width="100" Click="EditLogicBtn_Click"/>
+                                <Button Content="Изменить"  Style="{StaticResource AuthButton}" FontSize="10" Grid.Row="1" Margin="0 0 0 15" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="1" Height="25" Width="115" Click="EditLogicBtn_Click"/>
 
                                 <!-- Info about guest -->
                                 <Grid Grid.Row="1" Grid.Column="1">

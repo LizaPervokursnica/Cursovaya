@@ -5,7 +5,7 @@ namespace HotelTest
 {
     public class CheckLinks
     {
-        public string defaultPhoto = "https://www.pngitem.com/pimgs/m/52-526033_unknown-person-icon-png-transparent-png.png";
+        public string defaultPhoto = "https://www.kindpng.com/picc/m/52-526072_unknown-character-hd-png-download.png";
 
         [Fact]
         public void CheckBagLink1()
