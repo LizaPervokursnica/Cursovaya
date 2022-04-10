@@ -24,19 +24,17 @@ public partial class CuteTextBox : UserControl
         }
     }
 
-    private void Nametxtbox_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
-    {
-        lbl.VerticalAlignment = VerticalAlignment.Top;
-        lbl.FontSize = 11;
-    }
+    private void Nametxtbox_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e) => SmallTopText();
 
     private void brdr_Loaded(object sender, RoutedEventArgs e)
     {
-        if (TxtBox.Text != "")
-        {
-            lbl.VerticalAlignment = VerticalAlignment.Top;
-            lbl.FontSize = 11;
-        }
+        if (TxtBox.Text != "") SmallTopText();
+    }
+
+    private void SmallTopText()
+    {
+        lbl.VerticalAlignment = VerticalAlignment.Top;
+        lbl.FontSize = 11;
     }
 }
 
