@@ -45,7 +45,11 @@ public partial class GuestPage : Page
 
         string searchText = SBox.SearchItemTxt.Text;
         ListV.ItemsSource = null;
-        var list = searchText == "" ? context.Guests.OrderBy(x => x.Id).ToList() : context.Guests.Where(x => x.Name.ToLower().Contains(searchText) || x.Phone.ToLower().Contains(searchText)).OrderBy(x => x.Id).ToList();
+
+        var list = searchText == "" ? context.Guests.OrderBy(x => x.Id).ToList() : 
+            context.Guests.Where(x => x.Name.ToLower().Contains(searchText) || 
+        x.Phone.ToLower().Contains(searchText)).OrderBy(x => x.Id).ToList();
+
         var observableCollection = new ObservableCollection<Guest>();
         ListV.ItemsSource = observableCollection;
 

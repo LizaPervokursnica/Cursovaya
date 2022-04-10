@@ -1,6 +1,7 @@
 ﻿using HotelAccounting.DataAccess;
 using HotelAccounting.Model;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -15,7 +16,7 @@ namespace HotelAccounting.Pages;
 public partial class HomePage : Page
 {
     HotelDbContext context = new HotelDbContext();
-    ObservableCollection<Room> freeObservableCollection = new ObservableCollection<Room>();
+   
     public HomePage()
     {
         InitializeComponent();
@@ -94,21 +95,35 @@ public partial class HomePage : Page
 
     private void UseRoomFilter(string searchText, RoomFilter roomFilter)
     {
+        GC.Collect();
+        GC.WaitForPendingFinalizers();
+
         ListV.ItemsSource = null;
+        IQueryable<Room> list_;
+        var freeObservableCollection = new ObservableCollection<Room>();
+        List<Room> roomList = new();
 
-        var freeList = roomFilter switch
+        if (searchText == "")
         {
-            RoomFilter.Free => searchText == "" ? context.Rooms.Where(x => !x.GuestId.HasValue).OrderBy(x => x.Id).ToList() :
-            context.Rooms.Where(x => !x.GuestId.HasValue && (x.Equipment.ToLower().Contains(searchText) || x.NameOfRoom.ToLower().Contains(searchText))).OrderBy(x => x.Id).ToList(),
+            list_ = roomFilter switch
+            {
+                RoomFilter.Free => context.Rooms.Where(x => !x.GuestId.HasValue),
+                RoomFilter.Occupied => context.Rooms.Where(x => x.GuestId.HasValue),
+                _ => context.Rooms
+            };
+        }
+        else
+        {
+            list_ = roomFilter switch
+            {
+                RoomFilter.Free => context.Rooms.Where(x => !x.GuestId.HasValue && (x.Equipment.ToLower().Contains(searchText) || x.NameOfRoom.ToLower().Contains(searchText))),
+                RoomFilter.Occupied => context.Rooms.Where(x => x.GuestId.HasValue && (x.Equipment.ToLower().Contains(searchText) || x.NameOfRoom.ToLower().Contains(searchText))),
+                _ => context.Rooms.Where(x => x.Equipment.ToLower().Contains(searchText) || x.NameOfRoom.ToLower().Contains(searchText))
+            };
+        }
 
-            RoomFilter.Occupied => searchText == "" ? context.Rooms.Where(x => x.GuestId.HasValue).OrderBy(x => x.Id).ToList() : context.Rooms.Where(x => x.GuestId.HasValue && 
-            (x.Equipment.ToLower().Contains(searchText) || x.NameOfRoom.ToLower().Contains(searchText))).OrderBy(x => x.Id).ToList(),
-
-            _ => searchText == "" ? context.Rooms.OrderBy(x => x.Id).ToList() : context.Rooms.Where(x => x.Equipment.ToLower().Contains(searchText) ||
-            x.NameOfRoom.ToLower().Contains(searchText)).OrderBy(x => x.Id).ToList()
-        };
-       
+        roomList = list_.OrderBy(x => x.Id).ToList();
         ListV.ItemsSource = freeObservableCollection;
-        freeList.ForEach(x => freeObservableCollection.Add(x));
+        roomList.ForEach(x => freeObservableCollection.Add(x));
     }
 }
