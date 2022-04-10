@@ -1,9 +1,9 @@
-﻿using System;
+﻿using HotelAccounting.DataAccess;
+using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
-using HotelAccounting.DataAccess;
 
 namespace HotelAccounting.Pages
 {
@@ -24,12 +24,12 @@ namespace HotelAccounting.Pages
 
         private void GoBack(object sender, RoutedEventArgs e) => BackMove();
 
-        private void BackMove() =>         
+        private void BackMove() =>
             NavigationService.Navigate(new Uri("Pages/HomePage.xaml", UriKind.RelativeOrAbsolute));
-        
+
         private void CheckInOutRoom_Click(object sender, RoutedEventArgs e)
         {
-            if(StatusChangeBtn.Content == "Вселить")
+            if (StatusChangeBtn.Content == "Вселить")
             {
                 if (GComboBox.SelectedItem != null)
                 {
@@ -44,7 +44,7 @@ namespace HotelAccounting.Pages
                 }
                 else MessageBox.Show("Выберите гостя в выпадающем списке", "Внимание");
             }
-            else if(StatusChangeBtn.Content == "Выселить")
+            else if (StatusChangeBtn.Content == "Выселить")
             {
                 using (HotelDbContext dbContext = new HotelDbContext())
                 {

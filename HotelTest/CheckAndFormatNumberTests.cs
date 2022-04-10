@@ -1,6 +1,6 @@
-﻿using Xunit;
-using HotelAccounting.Classes;
+﻿using HotelAccounting.Classes;
 using System.Linq;
+using Xunit;
 
 namespace HotelTest
 {

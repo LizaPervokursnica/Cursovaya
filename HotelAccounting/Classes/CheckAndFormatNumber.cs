@@ -20,21 +20,21 @@ namespace HotelAccounting.Classes
         public bool CheckNumber(string number, out string formatedNumber)
         {
             string onlyDigitNumber = new string(number.Where(char.IsDigit).ToArray());
-                if (long.TryParse(onlyDigitNumber, out long result) && onlyDigitNumber[0] == '8' && onlyDigitNumber.Length == 11)
-                {
-                    formatedNumber = FormatNumber("7" + onlyDigitNumber.Substring(1));
-                    return true;
-                }
-                else if (onlyDigitNumber.Length >= 7 && long.TryParse(onlyDigitNumber, out long result2))
-                {
-                    formatedNumber = FormatNumber(onlyDigitNumber);
-                    return true;
-                }
-                else
-                {
-                    formatedNumber = string.Empty;
-                    return false;
-                }
+            if (long.TryParse(onlyDigitNumber, out long result) && onlyDigitNumber[0] == '8' && onlyDigitNumber.Length == 11)
+            {
+                formatedNumber = FormatNumber("7" + onlyDigitNumber.Substring(1));
+                return true;
+            }
+            else if (onlyDigitNumber.Length >= 7 && long.TryParse(onlyDigitNumber, out long result2))
+            {
+                formatedNumber = FormatNumber(onlyDigitNumber);
+                return true;
+            }
+            else
+            {
+                formatedNumber = string.Empty;
+                return false;
+            }
         }
     }
 }

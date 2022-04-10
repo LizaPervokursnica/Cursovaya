@@ -1,5 +1,5 @@
-using Xunit;
 using HotelAccounting.Classes;
+using Xunit;
 
 namespace HotelTest
 {

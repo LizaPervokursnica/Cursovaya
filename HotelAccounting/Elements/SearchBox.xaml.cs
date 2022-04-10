@@ -18,8 +18,8 @@ namespace HotelAccounting.Elements
             if (SearchItemTxt.Text == "") LblSearchTxt.Visibility = Visibility.Visible;
         }
 
-        private void SearchBorder_GotKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e) => 
+        private void SearchBorder_GotKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e) =>
             LblSearchTxt.Visibility = Visibility.Hidden;
-        
+
     }
 }

@@ -1,8 +1,8 @@
-﻿using System.Linq;
+﻿using HotelAccounting.Classes;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using HotelAccounting.Classes;
+using HotelAccounting.DataAccess;
 
 namespace HotelAccounting.Windows
 {
@@ -12,6 +12,7 @@ namespace HotelAccounting.Windows
     public partial class AuthWindow : Window
     {
         public Window window;
+        public HotelDbContext context = new ();
         public AuthWindow()
         {
             InitializeComponent();
@@ -20,17 +21,22 @@ namespace HotelAccounting.Windows
 
         private async void AuthBtn_Click(object sender, RoutedEventArgs e)
         {
+            await AUTH();
+        }
 
-            var success = Authorization.CheckLogAndPass(loginTBox.TxtBox.Text, passwordBox.PassBox.Password);
-            if (success == "true")
+        private async Task AUTH()
+        {
+           var success = await Authorization.CheckLogAndPass(loginTBox.TxtBox.Text, passwordBox.PassBox.Password, context);
+            if (success.ToString() == "true")
             {
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
                 Hide();
             }
-            else if (success == "noConnect") MessageBox.Show("Произошла ошибка соединения с базой данных.", "Ошибка!", MessageBoxButton.OK);
+            else if (success.ToString() == "noConnect") MessageBox.Show("Произошла ошибка соединения с базой данных.", "Ошибка!", MessageBoxButton.OK);
             else MessageBox.Show("Ошибка. Введён неверный логин или пароль.", "Ошибка!", MessageBoxButton.OK);
         }
+
 
         private void btnClose_Click(object sender, RoutedEventArgs e) => Application.Current.Shutdown();
 

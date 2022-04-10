@@ -19,14 +19,14 @@ namespace HotelAccounting.Elements
         {
             if (TxtBox.Text == "")
             {
-                lbl.VerticalAlignment = VerticalAlignment.Center; 
+                lbl.VerticalAlignment = VerticalAlignment.Center;
                 lbl.FontSize = 13;
             }
         }
 
         private void Nametxtbox_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
-            lbl.VerticalAlignment = VerticalAlignment.Top; 
+            lbl.VerticalAlignment = VerticalAlignment.Top;
             lbl.FontSize = 11;
         }
 

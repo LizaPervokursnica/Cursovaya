@@ -1,24 +1,25 @@
 ﻿using HotelAccounting.DataAccess;
-using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
-namespace HotelAccounting.Classes
+namespace HotelAccounting.Classes;
+
+public class Authorization
 {
-    public class Authorization
+    public static async Task<string> CheckLogAndPass(string log, string pass, HotelDbContext context)
     {
-        public static string CheckLogAndPass(string log, string pass)
-        {
-            User authUser = null;
-            try
-            {
-                using (HotelDbContext context = new HotelDbContext())
-                    authUser = context.Users.FirstOrDefault(x => x.Login == log.Trim());
 
-                return authUser != null && BCrypt.Net.BCrypt.Verify(pass.Trim(), authUser.Password) ? "true" : "false";
-            }
-            catch 
-            { 
-                return "noConnect"; 
-            }
+        User authUser = null;
+        try
+        {
+            authUser = await context.Users.FirstOrDefaultAsync(x => x.Login == log.Trim());
+            return authUser != null && BCrypt.Net.BCrypt.Verify(pass.Trim(), authUser.Password) ? "true" : "false";
         }
+        catch
+        {
+            return "noConnect";
+        }
+
     }
 }
+

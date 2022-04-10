@@ -9,10 +9,6 @@
         Background="Transparent" AllowsTransparency="True"
         ResizeMode="NoResize" WindowState="Normal" Icon="/Assets/Icons/hotel.ico">
     
-    
-    <!-- изменить выделение для элементов ComboBox
-    Асинхронный метод для авторизации -->
-    
     <Border CornerRadius="8" Background="{DynamicResource PrimaryBackgroundColor}" MouseDown="Border_MouseDown_1">
         <Grid>
             <Grid.ColumnDefinitions>

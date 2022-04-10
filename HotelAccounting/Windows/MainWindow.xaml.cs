@@ -1,5 +1,4 @@
-﻿using HotelAccounting.Pages;
-using System;
+﻿using System;
 using System.Windows;
 using System.Windows.Input;
 
@@ -10,7 +9,7 @@ namespace HotelAccounting
     /// </summary>
     public partial class MainWindow : Window
     {
-        
+
 
         public static Window window;
         public MainWindow()
@@ -44,6 +43,6 @@ namespace HotelAccounting
 
 
         private void Border_MouseDown_1(object sender, MouseButtonEventArgs e) => Keyboard.ClearFocus();
-        
+
     }
 }

@@ -1,11 +1,11 @@
-﻿using System;
+﻿using HotelAccounting.DataAccess;
+using HotelAccounting.Elements;
+using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
-using System.Windows.Input;
 using System.Windows.Controls;
-using HotelAccounting.DataAccess;
-using System.Collections.ObjectModel;
-using HotelAccounting.Elements;
+using System.Windows.Input;
 
 namespace HotelAccounting.Pages
 {
@@ -33,7 +33,7 @@ namespace HotelAccounting.Pages
         {
             AddToGuests toGuests = new AddToGuests();
             toGuests.AddBtn.Content = "Добавить";
-            NavigationService.Navigate(toGuests);            
+            NavigationService.Navigate(toGuests);
         }
 
         private void SBox_KeyDown(object sender, KeyEventArgs e)

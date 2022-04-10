@@ -1,9 +1,9 @@
-﻿using HotelAccounting.DataAccess;
+﻿using HotelAccounting.Classes;
+using HotelAccounting.DataAccess;
 using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using HotelAccounting.Classes;
 
 namespace HotelAccounting.Pages
 {
@@ -13,7 +13,7 @@ namespace HotelAccounting.Pages
     public partial class AddToGuests : Page
     {
         public AddToGuests() => InitializeComponent();
-        
+
         private void GoBack(object sender, RoutedEventArgs e) =>
             NavigationService.Navigate(new Uri("Pages/GuestPage.xaml", UriKind.RelativeOrAbsolute));
 
