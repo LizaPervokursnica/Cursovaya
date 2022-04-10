@@ -40,7 +40,6 @@
             <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
                 <Label Content="Авторизация" Style="{StaticResource PageMainLabel}"/>
                 <elements:CuteTextBox x:Name="loginTBox" Title="Логин" Margin="0,5,0,5"/>
-                <!--<elements:CuteTextBox x:Name="passwordTBox" Title="Пароль" Margin="0,0,0,2"/>-->
                 <elements:СutePasswordBox x:Name="passwordBox" Height="35" Title="Пароль" Margin="0,0,0,2"/>
                 
                 <Button Style="{StaticResource AuthButton}" Margin="0 3 0 0 " Content="Войти" Click="AuthBtn_Click" />
