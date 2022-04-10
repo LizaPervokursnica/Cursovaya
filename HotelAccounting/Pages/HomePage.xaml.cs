@@ -7,108 +7,108 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace HotelAccounting.Pages
+namespace HotelAccounting.Pages;
+
+/// <summary>
+/// Interaction logic for HomePage.xaml
+/// </summary>
+public partial class HomePage : Page
 {
-    /// <summary>
-    /// Interaction logic for HomePage.xaml
-    /// </summary>
-    public partial class HomePage : Page
+    HotelDbContext context = new HotelDbContext();
+    ObservableCollection<Room> freeObservableCollection = new ObservableCollection<Room>();
+    public HomePage()
     {
-        HotelDbContext context = new HotelDbContext();
+        InitializeComponent();
 
-        public HomePage()
+        GC.Collect();
+        GC.WaitForPendingFinalizers();
+
+        try
         {
-            InitializeComponent();
+            ListV.ItemsSource = context.Rooms.OrderBy(x => x.Id).ToList();
+        }
+        catch { MessageBox.Show("Ошибка подключеия к базе данных", "Ошибка!", MessageBoxButton.OK); }
+    }
 
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
+    private void ChooseRoom(object sender, RoutedEventArgs e)
+    {
+        var button = sender as Button;
+        if (button.DataContext is Room room) MoveToMain(room);
+    }
+    private void TextBlock_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        var button = sender as TextBlock;
+        if (button.DataContext is Room room) MoveToMain(room);
+    }
 
-            try
-            {
-                ListV.ItemsSource = context.Rooms.OrderBy(x => x.Id).ToList();
-            }
-            catch { MessageBox.Show("Ошибка подключеия к базе данных", "Ошибка!", MessageBoxButton.OK); }
+    private void MoveToMain(Room room)
+    {
+        var specifRoom = new SpecificRoom();
+        specifRoom.RoomNameLabel.Content = room.NameOfRoom;
+        if (room.GuestId == null)
+        {
+            specifRoom.RoomStatus.Content = "Свободен";
+            specifRoom.RoomStatus.Foreground = new SolidColorBrush(Colors.Green);
+            specifRoom.StatusChangeBtn.Content = "Вселить";
+        }
+        else if (room.GuestId != null)
+        {
+            specifRoom.RoomStatus.Content = "Занят";
+            specifRoom.RoomStatus.Foreground = new SolidColorBrush(Colors.Red);
+            specifRoom.GComboBox.ItemsSource = context.Guests.Where(x => x.Id == room.GuestId).ToList();
+            specifRoom.GComboBox.SelectedIndex = 0;
+            specifRoom.GComboBox.IsEnabled = false;
+            specifRoom.StatusChangeBtn.Content = "Выселить";
+        }
+        specifRoom.RoomDescription.Text = room.Equipment;
+        specifRoom.PhotoURL = room.Photo;
+        specifRoom.RoomID = room.Id;
+        NavigationService.Navigate(specifRoom);
+    }
+
+    private void HouseCBox_SelectionChanged(object sender, SelectionChangedEventArgs e) => UpdateList();
+
+    private void SearchBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e) => UpdateList();
+
+    public void UpdateList()
+    {
+        if (ListV == null) ListV = new ListView();
+        if (SBox == null) SBox = new Elements.SearchBox();
+
+        string searchText = SBox.SearchItemTxt.Text;
+        var selectedIndex = (RoomFilter)HouseCBox.SelectedIndex;
+
+        if (selectedIndex == RoomFilter.Free)
+        {
+            UseRoomFilter(searchText, RoomFilter.Free);
+            return;
         }
 
-        private void ChooseRoom(object sender, RoutedEventArgs e)
+        if (selectedIndex == RoomFilter.Occupied)
         {
-            var button = sender as Button;
-            if (button.DataContext is Room room) MoveToMain(room);
+            UseRoomFilter(searchText, RoomFilter.Occupied);
+            return;
         }
-        private void TextBlock_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        else UseRoomFilter(searchText, RoomFilter.All);
+    }
+
+    private void UseRoomFilter(string searchText, RoomFilter roomFilter)
+    {
+        ListV.ItemsSource = null;
+
+        var freeList = roomFilter switch
         {
-            var button = sender as TextBlock;
-            if (button.DataContext is Room room) MoveToMain(room);
-        }
+            RoomFilter.Free => searchText == "" ? context.Rooms.Where(x => !x.GuestId.HasValue).OrderBy(x => x.Id).ToList() :
+            context.Rooms.Where(x => !x.GuestId.HasValue && (x.Equipment.ToLower().Contains(searchText) || x.NameOfRoom.ToLower().Contains(searchText))).OrderBy(x => x.Id).ToList(),
 
-        private void MoveToMain(Room room)
-        {
-            var specifRoom = new SpecificRoom();
-            specifRoom.RoomNameLabel.Content = room.NameOfRoom;
-            if (room.GuestId == null)
-            {
-                specifRoom.RoomStatus.Content = "Свободен";
-                specifRoom.RoomStatus.Foreground = new SolidColorBrush(Colors.Green);
-                specifRoom.StatusChangeBtn.Content = "Вселить";
-            }
-            else if (room.GuestId != null)
-            {
-                specifRoom.RoomStatus.Content = "Занят";
-                specifRoom.RoomStatus.Foreground = new SolidColorBrush(Colors.Red);
-                specifRoom.GComboBox.ItemsSource = context.Guests.Where(x => x.Id == room.GuestId).ToList();
-                specifRoom.GComboBox.SelectedIndex = 0;
-                specifRoom.GComboBox.IsEnabled = false;
-                specifRoom.StatusChangeBtn.Content = "Выселить";
-            }
-            specifRoom.RoomDescription.Text = room.Equipment;
-            specifRoom.PhotoURL = room.Photo;
-            specifRoom.RoomID = room.Id;
-            NavigationService.Navigate(specifRoom);
-        }
+            RoomFilter.Occupied => searchText == "" ? context.Rooms.Where(x => x.GuestId.HasValue).OrderBy(x => x.Id).ToList() : context.Rooms.Where(x => x.GuestId.HasValue && 
+            (x.Equipment.ToLower().Contains(searchText) || x.NameOfRoom.ToLower().Contains(searchText))).OrderBy(x => x.Id).ToList(),
 
-        private void HouseCBox_SelectionChanged(object sender, SelectionChangedEventArgs e) => UpdateList();
-
-        private void SearchBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e) => UpdateList();
-
-        public void UpdateList()
-        {
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-
-            if (ListV == null) ListV = new ListView();
-
-            if (SBox == null) SBox = new Elements.SearchBox();
-            string searchText = SBox.SearchItemTxt.Text;
-
-            var selectedIndex = (RoomFilter)HouseCBox.SelectedIndex;
-
-            if (selectedIndex == RoomFilter.Free)
-            {
-                ListV.ItemsSource = null;
-                var freeList = searchText == "" ? context.Rooms.Where(x => !x.GuestId.HasValue).OrderBy(x => x.Id).ToList() : context.Rooms.Where(x => !x.GuestId.HasValue && (x.Equipment.ToLower().Contains(searchText) || x.NameOfRoom.ToLower().Contains(searchText))).OrderBy(x => x.Id).ToList();
-                var freeObservableCollection = new ObservableCollection<Room>();
-                ListV.ItemsSource = freeObservableCollection;
-                freeList.ForEach(x => freeObservableCollection.Add(x));
-                return;
-            }
-
-            if (selectedIndex == RoomFilter.Occupied)
-            {
-                ListV.ItemsSource = null;
-                var occupiedList = searchText == "" ? context.Rooms.Where(x => x.GuestId.HasValue).OrderBy(x => x.Id).ToList() : context.Rooms.Where(x => x.GuestId.HasValue && (x.Equipment.ToLower().Contains(searchText) || x.NameOfRoom.ToLower().Contains(searchText))).OrderBy(x => x.Id).ToList();
-                var occupiedObservableCollection = new ObservableCollection<Room>();
-                ListV.ItemsSource = occupiedObservableCollection;
-                occupiedList.ForEach(x => occupiedObservableCollection.Add(x));
-                return;
-            }
-            else
-            {
-                ListV.ItemsSource = null;
-                var list = searchText == "" ? context.Rooms.OrderBy(x => x.Id).ToList() : context.Rooms.Where(x => x.Equipment.ToLower().Contains(searchText) || x.NameOfRoom.ToLower().Contains(searchText)).OrderBy(x => x.Id).ToList();
-                var observableCollection = new ObservableCollection<Room>();
-                ListV.ItemsSource = observableCollection;
-                list.ForEach(x => observableCollection.Add(x));
-            }
-        }
+            _ => searchText == "" ? context.Rooms.OrderBy(x => x.Id).ToList() : context.Rooms.Where(x => x.Equipment.ToLower().Contains(searchText) ||
+            x.NameOfRoom.ToLower().Contains(searchText)).OrderBy(x => x.Id).ToList()
+        };
+       
+        ListV.ItemsSource = freeObservableCollection;
+        freeList.ForEach(x => freeObservableCollection.Add(x));
     }
 }

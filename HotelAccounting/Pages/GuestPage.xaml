@@ -36,12 +36,10 @@
                                     <RowDefinition Height="23"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
-
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="80"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                
                                 <Rectangle Grid.Row="1" RadiusX="10" RadiusY="10" Margin="5 0 5 15" Width="60">
                                     <Rectangle.Fill>
                                         <ImageBrush Stretch="UniformToFill"   ImageSource="{Binding Photo}" />
@@ -50,9 +48,7 @@
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 5 5 0" Grid.Column="2">
                                     <Button Style="{StaticResource SmallButtonForGuestsPage}" ToolTip="Удалить" Width="25" Height="17" Click="DeleteThis"/>
                                 </StackPanel>
-                                
                                 <Button Content="Изменить"  Style="{StaticResource AuthButton}" FontSize="10" Grid.Row="1" Margin="0 0 0 15" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="1" Height="25" Width="115" Click="EditLogicBtn_Click"/>
-
                                 <!-- Info about guest -->
                                 <Grid Grid.Row="1" Grid.Column="1">
                                     <StackPanel>
@@ -72,7 +68,6 @@
                                         </TextBlock>
                                     </StackPanel>
                                 </Grid>
-                                
                             </Grid>
                         </Border>
                     </DataTemplate>

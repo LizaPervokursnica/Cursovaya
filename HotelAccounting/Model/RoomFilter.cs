@@ -1,9 +1,8 @@
-﻿namespace HotelAccounting.Model
+﻿namespace HotelAccounting.Model;
+
+public enum RoomFilter : byte
 {
-    public enum RoomFilter : byte
-    {
-        All = 0,
-        Free = 1,
-        Occupied = 2,
-    }
+    All,
+    Free,
+    Occupied,
 }

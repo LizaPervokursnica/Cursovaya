@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using HotelAccounting.DataAccess;
-using HotelAccounting.Model;
 
 namespace HotelAccounting.Windows;
 /// <summary>
@@ -19,11 +18,8 @@ public partial class AuthWindow : Window
         window = this;
     }
 
-    private async void AuthBtn_Click(object sender, RoutedEventArgs e)
-    {
-        AUTH();
-    }
-
+    private async void AuthBtn_Click(object sender, RoutedEventArgs e) => AUTH();
+    
     private async Task AUTH()
     {
         var success = await Authorization.CheckLogAndPass(loginTBox.TxtBox.Text.Trim(), passwordBox.PassBox.Password.Trim(), context);
