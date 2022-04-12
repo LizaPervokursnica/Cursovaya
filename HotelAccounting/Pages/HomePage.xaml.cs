@@ -2,7 +2,6 @@
 using HotelAccounting.Model;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -73,6 +72,9 @@ public partial class HomePage : Page
 
     public void UpdateList()
     {
+        GC.Collect();
+        GC.WaitForPendingFinalizers();
+
         if (ListV == null) ListV = new ListView();
         if (SBox == null) SBox = new Elements.SearchBox();
 
@@ -95,12 +97,10 @@ public partial class HomePage : Page
 
     private void UseRoomFilter(string searchText, RoomFilter roomFilter)
     {
-        GC.Collect();
-        GC.WaitForPendingFinalizers();
-
+       
         ListV.ItemsSource = null;
+
         IQueryable<Room> list_;
-        var freeObservableCollection = new ObservableCollection<Room>();
         List<Room> roomList = new();
 
         if (searchText == "")
@@ -123,7 +123,6 @@ public partial class HomePage : Page
         }
 
         roomList = list_.OrderBy(x => x.Id).ToList();
-        ListV.ItemsSource = freeObservableCollection;
-        roomList.ForEach(x => freeObservableCollection.Add(x));
+        ListV.ItemsSource = roomList;
     }
 }
