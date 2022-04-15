@@ -14,6 +14,20 @@ public partial class AddToGuests : Page
 {
     public AddToGuests() => InitializeComponent();
 
+    public AddToGuests(string name, string phone, string sex, string photo, int id, string buttonLabel, string pageLabel)
+    {
+        InitializeComponent();
+        NameTextBox.TxtBox.Text = name;
+        PhoneTextBox.TxtBox.Text = phone;
+        PhotoTextBox.TxtBox.Text = photo;
+        GID.Content = id;
+        AddBtn.Content = buttonLabel;
+        MainGuestLabel.Content = pageLabel;
+        if (sex == "♂") Male.IsChecked = true;
+        else if (sex == "♀") Female.IsChecked = true;
+        else NoSex.IsChecked = true;
+    }
+
     private void GoBack(object sender, RoutedEventArgs e) =>
         NavigationService.Navigate(new Uri("Pages/GuestPage.xaml", UriKind.RelativeOrAbsolute));
 

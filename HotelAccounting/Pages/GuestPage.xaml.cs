@@ -32,7 +32,6 @@ public partial class GuestPage : Page
     private void AddToDb_Click(object sender, MouseButtonEventArgs e)
     {
         AddToGuests toGuests = new AddToGuests();
-        toGuests.AddBtn.Content = "Добавить";
         NavigationService.Navigate(toGuests);
     }
 
@@ -62,22 +61,13 @@ public partial class GuestPage : Page
 
         if (button.DataContext is Guest guest)
         {
-            AddToGuests toGuests = new AddToGuests();
-            toGuests.NameTextBox.TxtBox.Text = guest.Name;
-            toGuests.PhoneTextBox.TxtBox.Text = guest.Phone;
-            if (guest.Sex == "Мужской") toGuests.Male.IsChecked = true;
-            else if (guest.Sex == "Женский") toGuests.Female.IsChecked = true;
-            else toGuests.NoSex.IsChecked = true;
-            toGuests.PhotoTextBox.TxtBox.Text = guest.Photo;
-            toGuests.GID.Content = guest.Id;
-            toGuests.AddBtn.Content = "Сохранить";
-            toGuests.MainGuestLabel.Content = "Редактирование";
+            AddToGuests toGuests = new AddToGuests(guest.Name, guest.Phone, guest.Sex, guest.Photo, guest.Id, "Сохранить", "Редактирование");
             NavigationService.Navigate(toGuests);
         }
         else MessageBox.Show("Не выбран элемент для редактирования", "Выберите элемент", MessageBoxButton.OK);
     }
 
-    private void DeleteThis(object sender, RoutedEventArgs e)
+    private void DeleteThis(object sender, RoutedEventArgs e) 
     {
         var button = sender as Button;
 
