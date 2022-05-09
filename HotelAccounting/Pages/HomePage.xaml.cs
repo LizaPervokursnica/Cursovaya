@@ -41,27 +41,18 @@ public partial class HomePage : Page
 
     private void MoveToMain(Room room)
     {
-        var specifRoom = new SpecificRoom();
-        specifRoom.RoomNameLabel.Content = room.NameOfRoom;
         if (room.GuestId == null)
         {
-            specifRoom.RoomStatus.Content = "Свободен";
-            specifRoom.RoomStatus.Foreground = new SolidColorBrush(Colors.Green);
-            specifRoom.StatusChangeBtn.Content = "Вселить";
+            var specifRoom = new SpecificRoom(room.NameOfRoom, new SolidColorBrush(Colors.Green), "Свободен", "Вселить",
+                room.Equipment, room.Photo, room.Id);
+            NavigationService.Navigate(specifRoom);
         }
         else if (room.GuestId != null)
         {
-            specifRoom.RoomStatus.Content = "Занят";
-            specifRoom.RoomStatus.Foreground = new SolidColorBrush(Colors.Red);
-            specifRoom.GComboBox.ItemsSource = context.Guests.Where(x => x.Id == room.GuestId).ToList();
-            specifRoom.GComboBox.SelectedIndex = 0;
-            specifRoom.GComboBox.IsEnabled = false;
-            specifRoom.StatusChangeBtn.Content = "Выселить";
+            var currRoom = new SpecificRoom("Занят", new SolidColorBrush(Colors.Red), context.Guests.Where(x => x.Id == room.GuestId).ToList(), 
+                0, false, "Выселить", room.Equipment, room.Photo, room.Id, room.NameOfRoom);
+            NavigationService.Navigate(currRoom);
         }
-        specifRoom.RoomDescription.Text = room.Equipment;
-        specifRoom.PhotoURL = room.Photo;
-        specifRoom.RoomID = room.Id;
-        NavigationService.Navigate(specifRoom);
     }
 
     private void HouseCBox_SelectionChanged(object sender, SelectionChangedEventArgs e) => UpdateList();

@@ -1,8 +1,10 @@
 ﻿using HotelAccounting.DataAccess;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Navigation;
 
 namespace HotelAccounting.Pages
@@ -20,6 +22,44 @@ namespace HotelAccounting.Pages
             DataContext = this;
             HotelDbContext dbContext = new HotelDbContext();
             GComboBox.ItemsSource = dbContext.Guests.ToList();
+        }
+
+        public SpecificRoom(string status, SolidColorBrush foreground, 
+            List<Guest> guests, int selectedIndex, bool enable, string btnText,
+            string equipment, string photo, int id, string roomName)
+        {
+            InitializeComponent();
+            DataContext = this;
+            HotelDbContext dbContext = new HotelDbContext();
+            GComboBox.ItemsSource = dbContext.Guests.ToList();
+
+            RoomStatus.Content = status;
+            RoomStatus.Foreground = foreground;
+            GComboBox.ItemsSource = guests;
+            GComboBox.SelectedIndex = selectedIndex;
+            GComboBox.IsEnabled = enable;
+            StatusChangeBtn.Content = btnText;
+            RoomDescription.Text = equipment;
+            PhotoURL = photo;
+            RoomID = id;
+            RoomNameLabel.Content = roomName;
+        }
+
+        public SpecificRoom(string roomName, SolidColorBrush foreground, string status, 
+            string content, string equipment, string photo, int id)
+        {
+            InitializeComponent();
+            DataContext = this;
+            HotelDbContext dbContext = new HotelDbContext();
+            GComboBox.ItemsSource = dbContext.Guests.ToList();
+
+            RoomStatus.Content = status;
+            RoomStatus.Foreground = foreground;
+            RoomDescription.Text = equipment;
+            StatusChangeBtn.Content = content;
+            PhotoURL = photo;
+            RoomID = id;
+            RoomNameLabel.Content = roomName;
         }
 
         private void GoBack(object sender, RoutedEventArgs e) => BackMove();
