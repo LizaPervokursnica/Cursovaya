@@ -16,51 +16,55 @@ namespace HotelAccounting.Pages
     {
         public string PhotoURL { get; set; }
         public int RoomID { get; set; }
+
+        HotelDbContext dbContext = new HotelDbContext();
         public SpecificRoom()
         {
             InitializeComponent();
+
             DataContext = this;
-            HotelDbContext dbContext = new HotelDbContext();
             GComboBox.ItemsSource = dbContext.Guests.ToList();
         }
 
-        public SpecificRoom(string status, SolidColorBrush foreground, 
-            List<Guest> guests, int selectedIndex, bool enable, string btnText,
-            string equipment, string photo, int id, string roomName)
+        public SpecificRoom(string roomName, string equipment, string photo, int id)
         {
             InitializeComponent();
+
             DataContext = this;
-            HotelDbContext dbContext = new HotelDbContext();
             GComboBox.ItemsSource = dbContext.Guests.ToList();
 
-            RoomStatus.Content = status;
-            RoomStatus.Foreground = foreground;
+            RoomStatus.Content = "Свободен";
+            RoomStatus.Foreground = new SolidColorBrush(Colors.Green);
+            StatusChangeBtn.Content = "Вселить";
+            
+            RoomNameLabel.Content = roomName;
+            RoomDescription.Text = equipment;
+            PhotoURL = photo;
+            RoomID = id;
+        }
+
+        public SpecificRoom(List<Guest> guests, string equipment, string photo, int id, string roomName)
+        {
+            InitializeComponent();
+
+            DataContext = this;
+            //GComboBox.ItemsSource = dbContext.Guests.ToList();
+
+            RoomStatus.Content = "Занят";
+            RoomStatus.Foreground = new SolidColorBrush(Colors.Red);
+            StatusChangeBtn.Content = "Выселить";
+
             GComboBox.ItemsSource = guests;
-            GComboBox.SelectedIndex = selectedIndex;
-            GComboBox.IsEnabled = enable;
-            StatusChangeBtn.Content = btnText;
+            GComboBox.SelectedIndex = 0;
+            GComboBox.IsEnabled = false;
+
             RoomDescription.Text = equipment;
             PhotoURL = photo;
             RoomID = id;
             RoomNameLabel.Content = roomName;
         }
 
-        public SpecificRoom(string roomName, SolidColorBrush foreground, string status, 
-            string content, string equipment, string photo, int id)
-        {
-            InitializeComponent();
-            DataContext = this;
-            HotelDbContext dbContext = new HotelDbContext();
-            GComboBox.ItemsSource = dbContext.Guests.ToList();
 
-            RoomStatus.Content = status;
-            RoomStatus.Foreground = foreground;
-            RoomDescription.Text = equipment;
-            StatusChangeBtn.Content = content;
-            PhotoURL = photo;
-            RoomID = id;
-            RoomNameLabel.Content = roomName;
-        }
 
         private void GoBack(object sender, RoutedEventArgs e) => BackMove();
 

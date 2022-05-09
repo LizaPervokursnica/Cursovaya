@@ -43,14 +43,13 @@ public partial class HomePage : Page
     {
         if (room.GuestId == null)
         {
-            var specifRoom = new SpecificRoom(room.NameOfRoom, new SolidColorBrush(Colors.Green), "Свободен", "Вселить",
-                room.Equipment, room.Photo, room.Id);
+            var specifRoom = new SpecificRoom(room.NameOfRoom, room.Equipment, room.Photo, room.Id);
             NavigationService.Navigate(specifRoom);
         }
         else if (room.GuestId != null)
         {
-            var currRoom = new SpecificRoom("Занят", new SolidColorBrush(Colors.Red), context.Guests.Where(x => x.Id == room.GuestId).ToList(), 
-                0, false, "Выселить", room.Equipment, room.Photo, room.Id, room.NameOfRoom);
+            var currRoom = new SpecificRoom(context.Guests.Where(x => x.Id == room.GuestId).ToList(), room.Equipment, 
+                room.Photo, room.Id, room.NameOfRoom);
             NavigationService.Navigate(currRoom);
         }
     }
