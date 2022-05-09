@@ -15,14 +15,12 @@ namespace HotelAccounting.Pages;
 public partial class HomePage : Page
 {
     HotelDbContext context = new HotelDbContext();
-   
     public HomePage()
     {
         InitializeComponent();
 
-        GC.Collect();
-        GC.WaitForPendingFinalizers();
-
+        //GC.Collect();
+        //GC.WaitForPendingFinalizers();
         try
         {
             ListV.ItemsSource = context.Rooms.OrderBy(x => x.Id).ToList();
