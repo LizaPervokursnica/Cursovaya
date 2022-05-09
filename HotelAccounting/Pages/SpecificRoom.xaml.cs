@@ -16,6 +16,8 @@ namespace HotelAccounting.Pages
     {
         public string PhotoURL { get; set; }
         public int RoomID { get; set; }
+        public string statusTitle { get; set; }
+        public SolidColorBrush brushForeground { get; set; }
 
         HotelDbContext dbContext = new HotelDbContext();
         public SpecificRoom()
@@ -27,8 +29,9 @@ namespace HotelAccounting.Pages
         public SpecificRoom(string roomName, string equipment, string photo, int id) : this()
         {
             GComboBox.ItemsSource = dbContext.Guests.ToList();
-            RoomStatus.Content = "Свободен";
-            RoomStatus.Foreground = new SolidColorBrush(Colors.Green);
+            statusTitle = "Свободен";
+            brushForeground = new SolidColorBrush(Colors.Green);
+
             StatusChangeBtn.Content = "Вселить";
             
             RoomNameLabel.Content = roomName;
@@ -39,8 +42,10 @@ namespace HotelAccounting.Pages
 
         public SpecificRoom(List<Guest> guests, string equipment, string photo, int id, string roomName) : this()
         {
-            RoomStatus.Content = "Занят";
-            RoomStatus.Foreground = new SolidColorBrush(Colors.Red);
+            statusTitle = "Занят";
+            brushForeground = new SolidColorBrush(Colors.Red);
+
+
             StatusChangeBtn.Content = "Выселить";
 
             GComboBox.ItemsSource = guests;
