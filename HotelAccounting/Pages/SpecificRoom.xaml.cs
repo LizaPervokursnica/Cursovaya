@@ -21,18 +21,12 @@ namespace HotelAccounting.Pages
         public SpecificRoom()
         {
             InitializeComponent();
-
             DataContext = this;
-            GComboBox.ItemsSource = dbContext.Guests.ToList();
         }
 
-        public SpecificRoom(string roomName, string equipment, string photo, int id)
+        public SpecificRoom(string roomName, string equipment, string photo, int id) : this()
         {
-            InitializeComponent();
-
-            DataContext = this;
             GComboBox.ItemsSource = dbContext.Guests.ToList();
-
             RoomStatus.Content = "Свободен";
             RoomStatus.Foreground = new SolidColorBrush(Colors.Green);
             StatusChangeBtn.Content = "Вселить";
@@ -43,13 +37,8 @@ namespace HotelAccounting.Pages
             RoomID = id;
         }
 
-        public SpecificRoom(List<Guest> guests, string equipment, string photo, int id, string roomName)
+        public SpecificRoom(List<Guest> guests, string equipment, string photo, int id, string roomName) : this()
         {
-            InitializeComponent();
-
-            DataContext = this;
-            //GComboBox.ItemsSource = dbContext.Guests.ToList();
-
             RoomStatus.Content = "Занят";
             RoomStatus.Foreground = new SolidColorBrush(Colors.Red);
             StatusChangeBtn.Content = "Выселить";
