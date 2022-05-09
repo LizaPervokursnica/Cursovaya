@@ -17,48 +17,40 @@ namespace HotelAccounting.Pages
         public string PhotoURL { get; set; }
         public int RoomID { get; set; }
         public string statusTitle { get; set; }
+        public string buttonTitle { get; set; }
+        public string roomLabel { get; set; }
+        public string roomEquipment { get; set; }
         public SolidColorBrush brushForeground { get; set; }
 
         HotelDbContext dbContext = new HotelDbContext();
-        public SpecificRoom()
+        public SpecificRoom(string roomName, string photo, int id, string equipment)
         {
             InitializeComponent();
             DataContext = this;
+            roomLabel = roomName;
+            PhotoURL = photo;
+            RoomID = id;
+            roomEquipment = equipment;
         }
 
-        public SpecificRoom(string roomName, string equipment, string photo, int id) : this()
+        public SpecificRoom(string roomName, string equipment, string photo, int id) : this(roomName, photo, id, equipment)
         {
             GComboBox.ItemsSource = dbContext.Guests.ToList();
             statusTitle = "Свободен";
             brushForeground = new SolidColorBrush(Colors.Green);
-
-            StatusChangeBtn.Content = "Вселить";
-            
-            RoomNameLabel.Content = roomName;
-            RoomDescription.Text = equipment;
-            PhotoURL = photo;
-            RoomID = id;
+            buttonTitle = "Вселить";
         }
 
-        public SpecificRoom(List<Guest> guests, string equipment, string photo, int id, string roomName) : this()
+        public SpecificRoom(List<Guest> guests, string equipment, string photo, int id, string roomName) : this(roomName, photo, id, equipment)
         {
             statusTitle = "Занят";
             brushForeground = new SolidColorBrush(Colors.Red);
-
-
-            StatusChangeBtn.Content = "Выселить";
+            buttonTitle = "Выселить";
 
             GComboBox.ItemsSource = guests;
             GComboBox.SelectedIndex = 0;
-            GComboBox.IsEnabled = false;
-
-            RoomDescription.Text = equipment;
-            PhotoURL = photo;
-            RoomID = id;
-            RoomNameLabel.Content = roomName;
+            GComboBox.IsEnabled = false;   
         }
-
-
 
         private void GoBack(object sender, RoutedEventArgs e) => BackMove();
 
@@ -67,7 +59,7 @@ namespace HotelAccounting.Pages
 
         private void CheckInOutRoom_Click(object sender, RoutedEventArgs e)
         {
-            if (StatusChangeBtn.Content == "Вселить")
+            if (buttonTitle == "Вселить")
             {
                 if (GComboBox.SelectedItem != null)
                 {
@@ -82,7 +74,7 @@ namespace HotelAccounting.Pages
                 }
                 else MessageBox.Show("Выберите гостя в выпадающем списке", "Внимание");
             }
-            else if (StatusChangeBtn.Content == "Выселить")
+            else if (buttonTitle == "Выселить")
             {
                 using (HotelDbContext dbContext = new HotelDbContext())
                 {

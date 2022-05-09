@@ -15,7 +15,7 @@
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.ColumnSpan="2">
-                <Label x:Name="RoomNameLabel" SnapsToDevicePixels="True" Style="{StaticResource PageMainLabel}"/>
+                <Label x:Name="RoomNameLabel" Content="{Binding roomLabel}" SnapsToDevicePixels="True" Style="{StaticResource PageMainLabel}"/>
                 <Label x:Name="RoomStatus" Foreground="{Binding brushForeground}" Content="{Binding statusTitle}" FontSize="11"  Margin="0 -5 0 0" Style="{StaticResource PageMainLabel}"/>
                 <Border CornerRadius="15" Margin="20" Background="{StaticResource SecundaryGrayColor}">
                     <StackPanel Margin="0 0 0 0" Orientation="Horizontal">
@@ -25,7 +25,7 @@
                             </Rectangle.Fill>
                         </Rectangle>
                         <TextBlock HorizontalAlignment="Center" SnapsToDevicePixels="True" Foreground="{StaticResource TextSecundaryColor}" FontSize="14" Margin="13 13 13 13" 
-                                   x:Name="RoomDescription" Width="240" TextWrapping="Wrap" Background="Transparent" FontFamily="{StaticResource CustomTextFont}"/>
+                                   x:Name="RoomDescription" Text="{Binding roomEquipment}" Width="240" TextWrapping="Wrap" Background="Transparent" FontFamily="{StaticResource CustomTextFont}"/>
                     </StackPanel>
                 </Border>
                 
@@ -64,7 +64,7 @@
                         </ComboBox.ItemTemplate>
                     </ComboBox>
                     <StackPanel Grid.Column="2">
-                    <Button x:Name="StatusChangeBtn" Margin="0 0 0 5" Style="{StaticResource AuthButton}" Click="CheckInOutRoom_Click"/>
+                        <Button x:Name="StatusChangeBtn" Content="{Binding buttonTitle}" Margin="0 0 0 5" Style="{StaticResource AuthButton}" Click="CheckInOutRoom_Click"/>
                     <Button x:Name="CancelBtn" Content="Отмена" Margin="0" Style="{StaticResource AuthButtonAlterStyle}" Click="GoBack"/>
                     </StackPanel>
                 </Grid>
